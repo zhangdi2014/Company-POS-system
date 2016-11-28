@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" 
+﻿<!--管理员管理页面-->
+<%@ page contentType="text/html;charset=UTF-8" 
 	import="com.bean.UserBean,com.entity.AdminInfo,java.util.*"
 %>
 <html>
