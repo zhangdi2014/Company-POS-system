@@ -1,4 +1,4 @@
-﻿  <!-- 头部设置 -->
+﻿     <!-- 头部设置 -->
 <%@ page contentType="text/html;charset=UTF-8" import="com.bean.UserBean"%>
 <html>
 	<head>
