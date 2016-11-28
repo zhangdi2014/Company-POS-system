@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" 
+﻿<%@ page contentType="text/html;charset=UTF-8" 
 	import="com.bean.UserBean,com.entity.AdminInfo,java.util.*"
 %>
 <html>
   <head>
-    <title>管理员添加</title>
+    <title>管理员</title>
     <script language="JavaScript" src="script/trim.js"></script>
     <script language="JavaScript">
       function check(){
