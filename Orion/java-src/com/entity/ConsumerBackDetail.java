@@ -26,7 +26,7 @@ public class ConsumerBackDetail {
 		this.cbdtotalprice = cbdtotalprice;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cbid") 
 	public String getCbdid() {
 		return cbdid;

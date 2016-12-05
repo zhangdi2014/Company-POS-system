@@ -34,7 +34,7 @@
 			  </tr>
 			  <tr>
 				<td><b>密码:</b></td>
-				<td><input type="password" id="upwd" name="upwd" value="12345" /></td>
+				<td><input type="password" id="upwd" name="upwd" value="123" /></td>
 			  </tr>
 			  <tr>
 				<td><b>验证码</b>:</td>

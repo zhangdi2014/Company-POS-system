@@ -43,7 +43,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -58,16 +58,16 @@
 	</table>
 	<hr color="black" size="1"/>
 	<form method="post" action="ManageServlet" id="mf">
-	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>采购信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<table width="100%" border="0" cellspacing="1" bgcolor="black" align="center">
+	<caption style="color:white;font-size:22px">采购信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>供应商</th>
 	    <th>采购日期</th>
 	  	<th>总价</th>
 	  	<th>采购人</th>
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= si.getSid() %></td>
 		<td>
       	  <select name="pname">
@@ -76,7 +76,7 @@
 			for(String name:pname){
 				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
   	   			String flag = "";
-  	   			if(name.equals(new String(pi.getPname().getBytes("ISO-8859-1"),"gbk"))){
+  	   			if(name.equals(pi.getPname())){
   	   				flag = "selected";
   	   			}
       	    %>
@@ -88,23 +88,17 @@
 		</td>
 	     <td><input name="sdate" id="sdate" value="<%= day %>"/></td>
 		<td><%= si.getStotalprice() %></td>
-		<td><input name="sbuyer" id="sbuyer" value="<%= new String(si.getSbuyer().getBytes("ISO-8859-1"),"gbk") %>" /></td>
+		<td><input name="sbuyer" id="sbuyer" value="<%= si.getSbuyer() %>" /></td>
 	  </tr>
 	</table>
+	<br/><br/>
 	<table align="center">
 	  <tr>
 	    <td><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:checkInfo()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/></td>
-	    <td><img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/></td>
+          	  style="cursor:hand"/></td>
+        <td width="20%"></td>
+	    <td><img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
+          	  style="cursor:hand"/></td>
 	  </tr>
 	  <input type="hidden" name="action" value="modifyStock"/>
 	  <input type="hidden" name="sid" value="<%= si.getSid() %>"/>
@@ -114,8 +108,8 @@
 		if(!list.isEmpty()){
 	 %>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>采购明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">采购明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>商品单价</th>
@@ -129,19 +123,17 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",sd.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
 	   	<form id="mfd<%= i %>" method="post" action="ManageServlet">
 	   	<input type="hidden" name="action" value="modifyStockDetail"/>
 	   	<input type="hidden" name="sdid" value="<%= sd.getSdid() %>"/>
-	   	<!--
-	   	<td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   	-->
+	   	
 	  	<td><%= gi.getGname() %></td>
 	  	<td><input name="sdamount" id="amount<%= i %>" value="<%= sd.getSdamount() %>"/></td>
 	  	<td><%= sd.getSdprice() %></td>

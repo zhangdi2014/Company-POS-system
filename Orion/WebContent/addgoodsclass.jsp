@@ -14,7 +14,7 @@
        }
      </script>
 	</head>
-	<body bgcolor="#EBF5FD">
+	<body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
 		<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session" />
 		<table width="100%" height="44" bgcolor="#206AB3">
 			<tr align="center">
@@ -27,43 +27,33 @@
 		<table>
 			<tr>
 				<td>
-					<a href="javascript:history.back()"> <img border="0"
-							src="img/back.jpg" />
-					</a>
+					<a href="javascript:history.back()"> <img border="0" src="img/back.jpg" /></a>
 				</td>
 			</tr>
 		</table>
 		<hr color="black" size="1" />
 		<form action="ManageServlet" method="post" id="mf">
-			<table width="80%" border="0" cellspacing="1" bgcolor="black"
-				align="center">
-				<tr bgcolor="white">
-					<td align="center">
+			<table width="80%" border="0" cellspacing="2" bgcolor="black" align="center">
+				<tr bgcolor="#ebf5fd">
+					<td align="center" height="40px" >
 						类别名称:
 					</td>
 					<td>
-						<input size="20" name="gcname" id="gcname" />
+						<input size="20" name="gcname" id="gcname" style="height:30px;font-size:16px"/>
 					</td>
 				</tr>
 			</table>
 			<br />
-			<table align="left" width="70%">
+			<table align="center" width="70%">
 				<tr>
 					<td align="right">
 						<img border="0" src="img/xg.gif" id="xg"
-							onclick="JavaScript:check()" style="cursor: hand"
-							onmouseover="document.all.xg.src='img/xga.gif'"
-							onmouseout="document.all.xg.src='img/xg.gif'"
-							onmouseup="document.all.xg.src='img/xga.gif'"
-							onmousedown="document.all.xg.src='img/xgb.gif'" />
+							onclick="JavaScript:check()" style="cursor: hand" />
 					</td>
+					<td width="5%"></td>
 					<td align="left">
-						<img border="0" src="img/cze.gif" id="cz"
-							onclick="JavaScript:document.all.mf.reset()" style="cursor: hand"
-							onmouseover="document.all.cz.src='img/czd.gif'"
-							onmouseout="document.all.cz.src='img/cze.gif'"
-							onmouseup="document.all.cz.src='img/czd.gif'"
-							onmousedown="document.all.cz.src='img/czc.gif'" />
+						<img border="0" src="img/cz.gif" id="cz"
+							onclick="JavaScript:document.all.mf.reset()" style="cursor: hand" />
 					</td>
 				</tr>
 			</table>

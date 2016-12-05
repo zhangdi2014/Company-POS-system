@@ -24,7 +24,7 @@ public class SellInfo {
 		this.eseller = eseller;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "eid") 
 	public String getEid() {
 		return eid;
@@ -32,7 +32,7 @@ public class SellInfo {
 	public void setEid(String eid) {
 		this.eid = eid;
 	}
-	@Column(name="edate", insertable=false,updatable=false,nullable=false)
+	@Column(name="edate", nullable=false)
 	public Date getEdate() {
 		return edate;
 	}
@@ -53,7 +53,7 @@ public class SellInfo {
 	public void setEtotalprice(double etotalprice) {
 		this.etotalprice = etotalprice;
 	}
-	@Column(name="edate",length=50,nullable=false)
+	@Column(name="eseller",length=50,nullable=false)
 	public String getEseller() {
 		return eseller;
 	}

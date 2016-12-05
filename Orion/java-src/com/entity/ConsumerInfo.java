@@ -29,7 +29,7 @@ public class ConsumerInfo {
 		this.cremark = cremark;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cid") 
 	public String getCid() {
 		return cid;

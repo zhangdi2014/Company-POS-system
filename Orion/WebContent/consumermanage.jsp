@@ -95,15 +95,11 @@
 				out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 			}
 	   %>
-	   <!-- 
-	   	 <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     <td><%= new String(ci.getClinkman().getBytes("ISO-8859-1"),"gbk") %></td>
-	     <td><%= new String(ci.getCtel().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	   
 	     <td><%= ci.getCname() %></td>
 	     <td><%= ci.getClinkman() %></td>
 	     <td><%= ci.getCtel() %></td>
-	     <td width="100"><a href="ManageServlet?action=lookConsumer&type=look&cid=<%= ci.getCid() %>"><img border="0" src="img/file.gif"/>查看</a></td>
+	     <td width="100"><a href="ManageServlet?action=lookConsumer&type=look&cid=<%= ci.getCid() %>"><img border="0" src="img/look.gif"/>查看</a></td>
 	     <td width="100"><a href="ManageServlet?action=lookConsumer&type=modify&cid=<%= ci.getCid() %>"><img border="0" src="img/mod.gif" height="16" width="16"/>修改</a></td>
 	     <td width="100"><a href="JavaScript:delete_sure('ManageServlet?action=deleteConsumer&cid=<%= ci.getCid() %>')"><img border="0" src="img/del.gif"/>删除</a></td>
 	   </tr>
@@ -111,6 +107,7 @@
 	   	}
 	    %>
 	</table>
+	<br/><br/>
 	<table width="100%" align="center">
 	<form method="post" action="ManageServlet" id="mf">
 	  <tr>

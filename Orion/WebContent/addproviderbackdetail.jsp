@@ -31,7 +31,7 @@
       }
     </script>    
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -46,18 +46,16 @@
 	</table>
 	<hr color="black" size="1"/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>供应商</th>
 	    <th>采购表号</th>
 	  	<th>退货时间</th>	
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= pb.getPbid() %></td>
-	     <!--
-	       <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
+	     
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pb.getSid() %></td>
 	     <td><%= (pb.getPbdate().getYear()+1900)+"-"+
@@ -65,10 +63,11 @@
 	  </tr>
 	</table>
 	<form method="post" action="ManageServlet" id="mf">
-	<font color="red" size="3">请在下表添加退货商品及数量.</font>
+	<br/>
+	<font color="white" size="3">请在下表添加退货商品及数量.</font>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>添加</th>
@@ -79,16 +78,14 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",pbd.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	   
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= pbd.getPbdamount() %></td>
 	  	<td>--</td>

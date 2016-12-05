@@ -18,7 +18,7 @@
     </script>
   </head>
   <body>
-   <body bgcolor="#EBF5FD">
+   <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -34,9 +34,9 @@
 	<hr color="black" size="1"/>
     <br/><br/><br/><br/><br/>
     <form action="ManageServlet" method="post" id="mf">
-    <center>
+    <center style="color:white;font-size:22px">
       请选择要退货的表单号:
-  	  <select name="sid" id="sid">
+  	  <select name="sid" id="sid" style="height:30px">
   	  <% 
 		//获取WebApplicationContext
 		WebApplicationContext wac=
@@ -52,18 +52,12 @@
   	    	}
   	     %>
   	  </select>
-    <br/><br/><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/>
-	    <img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/>
+    <br/><br/>
+        <img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()"
+          	  style="cursor:hand"/>
+        &nbsp;&nbsp;&nbsp;
+	    <img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
+          	  style="cursor:hand"/>
     <input type="hidden" name="action" value="addProviderBack"/>
     </center>
     </form>

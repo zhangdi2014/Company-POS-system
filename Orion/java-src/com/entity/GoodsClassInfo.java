@@ -18,7 +18,7 @@ public class GoodsClassInfo {
 		this.gcname = gcname;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gcid") 
 	public String getGcid() {
 		return gcid;

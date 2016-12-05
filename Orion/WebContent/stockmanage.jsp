@@ -33,7 +33,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
   	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td><font color="#FFFFFF" size="5">采购信息管理</font></td></tr>
@@ -52,11 +52,7 @@
 		      		 size="28"	onfocus="document.all.key.value=''"/>		    
 		    </td>
 		    <td width="85" align="right">
-		    <img src="img/sear.jpg" id="mg" border="0"
-		      style="cursor:hand"
-		      onclick="JavaScript:check()"
-		      onmousedown="document.all.mg.src='img/sear1.jpg'"
-		      onmouseup="document.all.mg.src='img/sear.jpg'"/>
+		    <img src="img/sear.jpg" id="mg" border="0"style="cursor:hand"onclick="JavaScript:check()"/>
 		    </td>
 	    	<td width="90" align="center"><a href="addstock.jsp" target="mainFrame"><font color="white" size="2">添加采购</font></a></td>
 		  </tr>
@@ -77,7 +73,7 @@
 		else{
 	 %>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	  <tr bgcolor="#D1F1FE" align="center">
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>供应商</th>
 	    <th>采购日期</th>
@@ -91,31 +87,23 @@
 	  <%
 	  	int i = 0;
 		//获取WebApplicationContext
-		WebApplicationContext wac=
-		   WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 		DButil db = (DButil)wac.getBean("DButil");
 		for(StockInfo si:list){
 		ProviderInfo pi = (ProviderInfo)db.getObject("ProviderInfo",si.getPid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
 	     <td><%= si.getSid() %></td>
-	     <!--
-	      <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
 	     <td><%= pi.getPname() %></td>
-	     <td><%= (si.getSdate().getYear()+1900)+"-"+
-	     		(si.getSdate().getMonth()+1)+"-"+(si.getSdate().getDate()) %></td>
+	     <td><%= (si.getSdate().getYear()+1900)+"-"+(si.getSdate().getMonth()+1)+"-"+(si.getSdate().getDate()) %></td>
 	     <td><%= si.getStotalprice() %></td>
-	     <!--
-	      <td><%= new String(si.getSbuyer().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
 	     <td><%= si.getSbuyer() %></td>
 	     <td width="60"><a href="ManageServlet?action=lookStock&type=look&sid=<%= si.getSid() %>" target="mainFrame"><img border="0" src="img/file.gif"/>查看</a></td>
 	   	 <td width="60"><a href="ManageServlet?action=lookStock&type=modify&sid=<%= si.getSid() %>" target="mainFrame"><img border="0" src="img/mod.gif" height="16" width="16"/>修改</a></td>
@@ -126,29 +114,30 @@
 	  	}
 	   %>	  
 	</table>
+	<br/><br/>
 	<table width="100%">
 	<form method="post" action="ManageServlet" id="mf">
 	  <tr>
 	    <td align="left">
-	      <font size="2">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
+	      <font size="2" color="white">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
 	    </td>
 	    <td align="right">
 	      <% 
 	      	if(userBean.getNowPage()>1){
 	       %>
-	      <a href="ManageServlet?action=changePage&pagename=/stockmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><img src="img/prev.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/stockmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><input type="button" name="prev" value="上页"></a>
 	      <% 
 	      	}
 	      	if(userBean.getNowPage()<userBean.getTotalPage()){
 	       %>	       
-	      <a href="ManageServlet?action=changePage&pagename=/stockmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><img src="img/next.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/stockmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><input type="button" name="next" value="下页"></a>
 	      <% 
 	      	}
 	      	else{
 	      		out.println("<img src='img/next.gif' style='visibility:hidden'/>");
 	      	}
 	       %>
-	      <font size="2">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
+	      <font size="2" color="white">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
 	      <input type="hidden" name="action" value="changePage" />
 	      <input type="hidden" name="pagename" value="/stockmanage.jsp"/>
 	    </td>

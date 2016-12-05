@@ -22,7 +22,7 @@ public class ProviderBack {
 		this.pbdate = pbdate;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pbid") 
 	public String getPbid() {
 		return pbid;

@@ -25,7 +25,7 @@ public class SellDetail {
 		this.edtotalprice = edtotalprice;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "edid") 
 	public String getEdid() {
 		return edid;

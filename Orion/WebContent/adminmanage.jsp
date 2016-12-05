@@ -41,7 +41,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
   	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td><font color="#FFFFFF" size="5">管理员管理</font></td></tr>
@@ -86,7 +86,7 @@
 		else{
 	 %>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	  <tr bgcolor="#D1F1FE" align="center">
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>管理员名称</th>
 	    <th>管理员级别</th>
 	  	<th>删&nbsp;&nbsp;&nbsp;&nbsp;除</th>
@@ -96,17 +96,14 @@
 		for(AdminInfo ai:list){
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	 %>
-	 <!-- 
-	 	<td><%= new String(ai.getAname().getBytes("ISO-8859-1"),"gbk") %></td>
-	 	<td><%= new String(ai.getAlevel().getBytes("ISO-8859-1"),"gbk") %></td>
-	  -->
+	 
 	 	<td><%= ai.getAname() %></td>
 	 	<td><%= ai.getAlevel() %></td>
 	 	<td width="33%"><a href="JavaScript:delete_sure('ManageServlet?action=deleteAdmin&aid=<%= ai.getAid()%>')"><img border="0" src="img/del.gif"/>删除</a></td> 		 
@@ -114,29 +111,30 @@
 	 	}
 	  %>
 	</table>
+	<br/><br/>
 	<table width="100%">
 	<form method="post" action="ManageServlet" id="mf">
 	  <tr>
 	    <td align="left">
-	      <font size="2">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
+	      <font size="2" color="white">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
 	    </td>
 	    <td align="right">
 	      <% 
 	      	if(userBean.getNowPage()>1){
 	       %>
-	      <a href="ManageServlet?action=changePage&pagename=/adminmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><img src="img/prev.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/adminmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><input type="button" name="prev" value="上页"></a>
 	      <% 
 	      	}
 	      	if(userBean.getNowPage()<userBean.getTotalPage()){
 	       %>	       
-	      <a href="ManageServlet?action=changePage&pagename=/adminmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><img src="img/next.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/adminmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><input type="button" name="prev" value="下页"></a>
 	      <% 
 	      	}
 	      	else{
 	      		out.println("<img src='img/next.gif' style='visibility:hidden'/>");
 	      	}
 	       %>
-	      <font size="2">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
+	      <font size="2" color="white">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
 	      <input type="hidden" name="action" value="changePage" />
 	      <input type="hidden" name="pagename" value="/adminmanage.jsp"/>
 	    </td>

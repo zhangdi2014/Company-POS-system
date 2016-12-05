@@ -26,7 +26,7 @@
       }
     </script>
   </head>
-   <body bgcolor="#EBF5FD">
+   <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -42,10 +42,10 @@
 	<hr color="black" size="1"/>	
 	<form action="ManageServlet" method="post" id="mf">
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">供&nbsp;应&nbsp;商:</td>
 	    <td>
-      	  <select name="pname" id="pname">
+      	  <select name="pname" id="pname" style="height:30px;font-size:16px">
       	  <% 
 			//获取WebApplicationContext
 			WebApplicationContext wac=
@@ -62,32 +62,26 @@
       	  </select>
 	    </td>
 	  </tr>
-	  <tr bgcolor="white">
-	    <td align="center">采购总价:</td>
-	    <td><input name="stp" id="stp"/></td>
+	  <tr bgcolor="#ebf5fd" height="40px">
+	    <td align="center" style="font-size:16px">采购总价:</td>
+	    <td><input  style="height:30px;font-size:16px" name="stp" id="stp"/></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">采&nbsp;购&nbsp;人:</td>
-	    <td><input name="sbuyer" id="sbuyer"/></td>
+	    <td><input style="height:30px;font-size:16px" name="sbuyer" id="sbuyer"/></td>
 	  </tr>
 	</table>
+	<br/><br/>
 	<table align="center">
 	  <tr>
 	    <td align="right">
 	    <img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/>
+          	  style="cursor:hand"/>
 	    </td>
+	    <td width="20%"></td>
 	    <td align="left">
-	    <img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/>
+	    <img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
+          	  style="cursor:hand"/>
 	    </td>
 	  </tr>
 	</table>

@@ -8,7 +8,7 @@
  %>
 <html>
   <head>
-    <title>采购信息管理</title>
+    <title>销售信息管理</title>
 	<link rel=stylesheet href="css/general.css" type="text/css">
     <script language="JavaScript" src="script/trim.js"></script>
     <script language="JavaScript">
@@ -33,7 +33,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
   	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td><font color="#FFFFFF" size="5">销售信息管理</font></td></tr>
@@ -77,7 +77,7 @@
 		else{
 	 %>	
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	  <tr bgcolor="#D1F1FE" align="center">
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>客户名称</th>
 	    <th>销售日期</th>
@@ -98,24 +98,17 @@
 		ConsumerInfo ci = (ConsumerInfo)db.getObject("ConsumerInfo",ei.getCid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
 	     <td><%= ei.getEid() %></td>
-	     <!--
-	     <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>     
-	     -->
 	     <td><%= ci.getCname() %></td>
-	     <td><%= (ei.getEdate().getYear()+1900)+"-"+
-	     		(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
+	     <td><%= (ei.getEdate().getYear()+1900)+"-"+(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
 	     <td><%= ei.getEtotalprice() %></td>
-	     <!--
-	      <td><%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
 	     <td><%= ei.getEseller() %></td>
 	     <td width="60"><a href="ManageServlet?action=lookSell&type=look&eid=<%= ei.getEid() %>" target="mainFrame"><img border="0" src="img/file.gif"/>查看</a></td>
 	   	 <td width="60"><a href="ManageServlet?action=lookSell&type=modify&eid=<%= ei.getEid() %>" target="mainFrame"><img border="0" src="img/mod.gif" height="16" width="16"/>修改</a></td>
@@ -126,29 +119,30 @@
 	  	}
 	   %>	  
 	</table>
+	<br/><br/>
 	<table width="100%">
 	<form method="post" action="ManageServlet" id="mf">
 	  <tr>
 	    <td align="left">
-	      <font size="2">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
+	      <font size="2" color="white">共<%= userBean.getTotalPage() %>页&nbsp;&nbsp;当前页:<%= userBean.getNowPage() %></font>
 	    </td>
 	    <td align="right">
 	      <% 
 	      	if(userBean.getNowPage()>1){
 	       %>
-	      <a href="ManageServlet?action=changePage&pagename=/sellmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><img src="img/prev.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/sellmanage.jsp&page=<%= userBean.getNowPage()-1 %>" target="mainFrame"><input type="button" name="prev" value="上页"></a>
 	      <% 
 	      	}
 	      	if(userBean.getNowPage()<userBean.getTotalPage()){
 	       %>	       
-	      <a href="ManageServlet?action=changePage&pagename=/sellmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><img src="img/next.gif" border="0"/></a>
+	      <a href="ManageServlet?action=changePage&pagename=/sellmanage.jsp&page=<%= userBean.getNowPage()+1 %>" target="mainFrame"><input type="button" name="next" value="下页"></a>
 	      <% 
 	      	}
 	      	else{
 	      		out.println("<img src='img/next.gif' style='visibility:hidden'/>");
 	      	}
 	       %>
-	      <font size="2">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
+	      <font size="2" color="white">第<input name="page" id="page" size="2" value="<%= userBean.getNowPage() %>" onfocus="document.all.page.value=''"/>页</font>
 	      <input type="hidden" name="action" value="changePage" />
 	      <input type="hidden" name="pagename" value="/sellmanage.jsp"/>
 	    </td>

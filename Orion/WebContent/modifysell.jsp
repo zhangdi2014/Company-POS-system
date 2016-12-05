@@ -43,7 +43,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -59,15 +59,15 @@
 	<hr color="black" size="1"/>
 	<form method="post" action="ManageServlet" id="mf">
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表&nbsp;单&nbsp;号</th>
 	    <th>客户名称</th>
 	    <th>销售日期</th>
 	  	<th>销售总价</th>
 	  	<th>销&nbsp;售&nbsp;人</th>
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= ei.getEid() %></td>
 		<td>
       	  <select name="cname">
@@ -88,26 +88,18 @@
 		</td>
 	     <td><input name="edate" id="edate" value="<%= day %>"/></td>
 		<td><%= ei.getEtotalprice() %></td>
-		<!--
-		<td><input name="eseller" id="eseller" value="<%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %>" /></td>
-		-->
+		
 		<td><input name="eseller" id="eseller" value="<%= ei.getEseller()%>" /></td>
 	  </tr>
 	</table>
+	<br/><br/>
 	<table align="center">
 	  <tr>
 	    <td><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:checkInfo()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/></td>
-	    <td><img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/></td>
+          	  style="cursor:hand"/></td>
+        <td width="20%"></td>
+	    <td><img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
+          	  style="cursor:hand"/></td>
 	  </tr>
 	  <input type="hidden" name="action" value="modifySell"/>
 	  <input type="hidden" name="eid" value="<%= ei.getEid() %>"/>
@@ -117,8 +109,8 @@
 		if(!list.isEmpty()){
 	 %>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>商品单价</th>
@@ -132,11 +124,11 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",ed.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
 	   	<form id="mfd<%= i %>" method="post" action="ManageServlet">

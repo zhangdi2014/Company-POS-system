@@ -28,7 +28,7 @@ public class GoodsInfo {
 		this.gamount = gamount;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gid") 
 	public String getGid() {
 		return gid;

@@ -26,7 +26,7 @@
       }
     </script>
   </head>
-   <body bgcolor="#EBF5FD">
+   <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -42,18 +42,16 @@
 	<hr color="black" size="1"/>
 	<form action="ManageServlet" method="post" id="mf">
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">客户姓名:</td>
 	    <td>
-      	  <select name="cname" id="cname">
+      	  <select name="cname" id="cname" style="height:30px">
       	  <% 
 			//获取WebApplicationContext
-			WebApplicationContext wac=
-			   WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+			WebApplicationContext wac= WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 			DButil db = (DButil)wac.getBean("DButil");
 			List<String> cname = db.getConsumer();
 			for(String name:cname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 
@@ -62,32 +60,26 @@
       	  </select>
 	    </td>
 	  </tr>
-	  <tr bgcolor="white">
-	    <td align="center">销售总价:</td>
-	    <td><input name="etotalprice" id="etotalprice"/></td>
+	  <tr bgcolor="#ebf5fd" height="40px">
+	    <td align="center" style="font-size:16px">销售总价:</td>
+	    <td><input style="height:30px;font-size:16px" name="etotalprice" id="etotalprice"/></td>
 	  </tr>
-	  <tr bgcolor="white">
-	    <td align="center">销&nbsp;售&nbsp;人:</td>
-	    <td><input name="eseller" id="eseller"/></td>
+	  <tr bgcolor="#ebf5fd" height="40px">
+	    <td align="center" style="font-size:16px">销&nbsp;售&nbsp;人:</td>
+	    <td><input style="height:30px;font-size:16px" name="eseller" id="eseller"/></td>
 	  </tr>
 	</table>
+	<br/><br/>
 	<table align="center">
 	  <tr>
 	    <td align="right">
 	    <img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/>
+          	  style="cursor:hand"/>
 	    </td>
+	    <td width="20%"></td>
 	    <td align="left">
-	    <img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/>
+	    <img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
+          	  style="cursor:hand"/>
 	    </td>
 	  </tr>
 	</table>

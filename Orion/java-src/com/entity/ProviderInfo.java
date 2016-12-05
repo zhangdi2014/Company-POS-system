@@ -28,7 +28,7 @@ public class ProviderInfo {
 		this.premark = premark;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pid") 
 	public String getPid() {
 		return pid;

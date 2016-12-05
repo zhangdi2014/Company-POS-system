@@ -95,15 +95,11 @@
 				out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 			}
 	   %>
-	   <!--
-	    <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     <td><%= new String(pi.getPlinkman().getBytes("ISO-8859-1"),"gbk") %></td>
-	     <td><%= new String(pi.getPtel().getBytes("ISO-8859-1"),"gbk") %></td> 
-	   -->
+	  
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pi.getPlinkman() %></td>
 	     <td><%= pi.getPtel() %></td> 
-	     <td width="100"><a href="ManageServlet?action=lookProvider&type=look&pid=<%= pi.getPid() %>"><img border="0" src="img/file.gif"/>查看</a></td>
+	     <td width="100"><a href="ManageServlet?action=lookProvider&type=look&pid=<%= pi.getPid() %>"><img border="0" src="img/look.gif"/>查看</a></td>
 	     <td width="100"><a href="ManageServlet?action=lookProvider&type=modify&pid=<%= pi.getPid() %>"><img border="0" src="img/mod.gif" height="16" width="16"/>修改</a></td>
 	     <td width="100"><a href="JavaScript:delete_sure('ManageServlet?action=deleteProvider&pid=<%= pi.getPid() %>')"><img border="0" src="img/del.gif"/>删除</a></td>
 	   </tr>

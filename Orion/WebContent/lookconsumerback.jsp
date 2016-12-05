@@ -16,7 +16,7 @@
   <head>
     <title>退货查看</title>  
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -31,18 +31,16 @@
 	</table>
 	<hr color="black" size="1"/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>客户名称</th>
 	    <th>销售表号</th>
 	  	<th>退货时间</th>	
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= cb.getCbid() %></td>
-	     <!--
-	     <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
+	     
 	     <td><%= ci.getCname() %></td>
 	     <td><%= cb.getEid() %></td>
 	     <td><%= (cb.getCbdate().getYear()+1900)+"-"+
@@ -54,8 +52,8 @@
 	 %>
 	<br/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>商品售价</th>
@@ -68,16 +66,14 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",cbd.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	  
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= cbd.getCbdamount() %></td>
 	  	<td><%= cbd.getCbdprice() %></td>

@@ -31,7 +31,7 @@
       }
     </script>    
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -46,14 +46,14 @@
 	</table>
 	<hr color="black" size="1"/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表单号</th>
 	    <th>客户名称</th>
 	    <th>销售表号</th>
 	  	<th>退货时间</th>	
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= cb.getCbid() %></td>
 	     <!--
 	     <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
@@ -65,10 +65,11 @@
 	  </tr>
 	</table>
 	<form method="post" action="ManageServlet" id="mf">
-	<font color="red" size="3">请在下表添加退货商品及数量.</font>
+	<br/>
+	<font color="white" size="3">请在下表添加退货商品及数量</font>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>退货明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">退货明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>添加</th>
@@ -86,9 +87,7 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	   
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= cbd.getCbdamount() %></td>
 	  	<td>--</td>
@@ -96,9 +95,9 @@
 	  <% 
 	  	}
 	   %>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 	    <td>
-      	  <select name="gname" id="gname">
+      	  <select name="gname" id="gname" style="height:30px;font-size:16px">
       	  <% 
       	  	String hql = "select gi.gname from GoodsInfo as gi "+
       	  			"where gi.gid in(select sd.gid from SellDetail "+
@@ -113,13 +112,9 @@
       	     %>
       	  </select>
 	    </td>
-	    <td><input name="cbdamount" id="cbdamount"/></td>
+	    <td><input name="cbdamount" id="cbdamount" style="height:30px;font-size:16px"/></td>
 	    <td><img border="0" src="img/tj.gif" id="tj" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.tj.src='img/tja.gif'"
-          	  onmouseout="document.all.tj.src='img/tj.gif'"
-          	  onmouseup="document.all.tj.src='img/tja.gif'"        	
-          	  onmousedown="document.all.tj.src='img/tjb.gif'"/></td>
+          	  style="cursor:hand"/></td>
 	  </tr>
 	  <input type="hidden" name="action" value="addConsumerBackDetail"/>
 	  <input type="hidden" name="cbid" value="<%= cb.getCbid() %>"/>

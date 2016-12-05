@@ -31,7 +31,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -46,34 +46,31 @@
 	</table>
 	<hr color="black" size="1"/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表&nbsp;单&nbsp;号</th>
 	    <th>客户名称</th>
 	    <th>销售日期</th>
 	  	<th>销售总价</th>
 	  	<th>采&nbsp;购&nbsp;人</th>
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= ei.getEid() %></td>
-		<!--
-		<td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
+		
 		<td><%= ci.getCname() %></td>
 	     <td><%= (ei.getEdate().getYear()+1900)+"-"+
 	     		(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
 		<td><%= ei.getEtotalprice() %></td>
-		<!--
-		<td><%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
+		
 		<td><%= ei.getEseller() %></td>
 	  </tr>
 	</table>
 	<form method="post" action="ManageServlet" id="mf">
-	<font color="red" size="3">请在下表添加销售商品.</font>
+	<br/>
+	<font color="white" size="3">请在下表添加销售商品.</font>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>添加</th>
@@ -84,16 +81,14 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",sd.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	   
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= sd.getEdamount() %></td>
 	  	<td>--</td>
@@ -101,9 +96,9 @@
 	  <% 
 	  	}
 	   %>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 	    <td>
-      	  <select name="gname" id="gname">
+      	  <select name="gname" id="gname" style="height:30px;font-size:16px">
       	  <% 
 			List<String> gname = db.getGoods();
 			for(String name:gname){
@@ -115,13 +110,9 @@
       	     %>
       	  </select>
 	    </td>
-	    <td><input name="edamount" id="edamount"/></td>
+	    <td><input name="edamount" id="edamount" style="height:30px;font-size:16px"/></td>
 	    <td><img border="0" src="img/tj.gif" id="tj" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.tj.src='img/tja.gif'"
-          	  onmouseout="document.all.tj.src='img/tj.gif'"
-          	  onmouseup="document.all.tj.src='img/tja.gif'"        	
-          	  onmousedown="document.all.tj.src='img/tjb.gif'"/></td>
+          	  style="cursor:hand"></td>
 	  </tr>
 	  <input type="hidden" name="action" value="addSellDetail"/>
 	  <input type="hidden" name="eid" value="<%= ei.getEid() %>"/>

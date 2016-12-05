@@ -25,7 +25,7 @@ public class StockDetail {
 		this.sdtotalprice = sdtotalprice;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sdid") 
 	public String getSdid() {
 		return sdid;
@@ -61,7 +61,7 @@ public class StockDetail {
 	public void setSdprice(double sdprice) {
 		this.sdprice = sdprice;
 	}
-	@Column(name="sdtptalprice",nullable=false)
+	@Column(name="sdtotalprice",nullable=false)
 	public double getSdtotalprice() {
 		return sdtotalprice;
 	}

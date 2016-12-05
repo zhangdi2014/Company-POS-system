@@ -92,7 +92,8 @@
 	  	<th>售价</th>
 	  	<th>单位</th>
 	  	<th>数量</th>
-	  	<th>查看/修改</th>
+	  	<th>查看</th>
+	  	<th>修改</th>
 	  	<th>删除</th>
 	  </tr>
 	  
@@ -119,20 +120,14 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	 %>
-	 <!-- 
-	 	<td><%= new String(gname.getBytes("ISO-8859-1"),"gbk") %></td>
-	    <td><%= new String((gci.getGcname()).getBytes("ISO-8859-1"),"gbk") %></td>
-	  -->
 	    <td><%= gname %></td>
 	    <td><%= gci.getGcname() %></td>
 	    <td>￥<%= gpin %></td>
 	    <td>￥<%= gpout %></td>
-	    <!-- 
-	     <td><%= new String(gunit.getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
 	    <td><%= gunit %></td>
 	    <td><%= gamount %></td>
-	    <td width="120"><a href="ManageServlet?action=lookGoods&gid=<%= gi.getGid() %>" target="mainFrame"><img border="0" src="img/mod.gif" height="16" width="16"/>查看/修改</a></td>
+	    <td width="120"><a href="ManageServlet?action=lookGoods&type=look&gid=<%= gi.getGid() %>" target="mainFrame"><img border="0" src="img/look.gif" height="16" width="16"/>查看</a></td>
+	    <td width="120"><a href="ManageServlet?action=lookGoods&type=modify&gid=<%= gi.getGid() %>" target="mainFrame"><img border="0" src="img/mod.gif" height="16" width="16"/>修改</a></td>
 	    <td width="100"><a href="JavaScript:delete_sure('ManageServlet?action=deleteGoods&gid=<%= gi.getGid()%>')" target="mainFrame"><img border="0" src="img/del.gif"/>删除</a></td>
 	  </tr>
 	<%
@@ -169,11 +164,11 @@
 	    <td width="10">
 	      <img src="img/go.gif" border="0" style="cursor:hand" onclick="JavaScript:checkPage(<%= userBean.getTotalPage() %>)">
 	    </td>
-	  </tr>	
+	  </tr>
 	</form>
 	</table>
 	<% 
 		}
-	 %>
+	%>
   </body>
 </html>

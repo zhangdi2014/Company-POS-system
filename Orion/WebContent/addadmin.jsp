@@ -23,7 +23,7 @@
       }
     </script>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -39,37 +39,24 @@
 	<hr color="black" size="1"/>
 	<form action="ManageServlet" method="post" id="mf">
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">管理员名称:</td>
-	    <td><input name="aname" id="aname"/></td>
+	    <td><input size="50" style="height:30px;font-size:16px" name="aname" id="aname"/></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">管理员密码:</td>
-	    <td><input type="password" name="apwd" id="apwd"/></td>
+	    <td><input size="50" style="height:30px;font-size:16px" type="password" name="apwd" id="apwd"/></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">确认密码:</td>
-	    <td><input type="password" name="fpwd" id="fpwd"/></td>
+	    <td><input size="50" style="height:30px;font-size:16px" type="password" name="fpwd" id="fpwd"/></td>
 	  </tr>
 	</table>
-	<table align="center">
+	<table align="center" height="70px" >	  
 	  <tr>
-	    <td align="right">
-	    <img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.xg.src='img/xga.gif'"
-          	  onmouseout="document.all.xg.src='img/xg.gif'"
-          	  onmouseup="document.all.xg.src='img/xga.gif'"        	
-          	  onmousedown="document.all.xg.src='img/xgb.gif'"/>
-	    </td>
-	    <td align="left">
-	    <img border="0" src="img/cze.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"
-          	  onmouseover="document.all.cz.src='img/czd.gif'"
-          	  onmouseout="document.all.cz.src='img/cze.gif'"
-          	  onmouseup="document.all.cz.src='img/czd.gif'"        	
-          	  onmousedown="document.all.cz.src='img/czc.gif'"/>
-	    </td>
+	    <td><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:check()" style="cursor:hand"/></td>
+	    <td width="20%"></td>
+	    <td><img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"style="cursor:hand"/></td>
 	  </tr>
 	</table>
 	<input type="hidden" name="action" value="addAdmin"/>

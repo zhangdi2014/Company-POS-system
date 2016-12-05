@@ -40,9 +40,9 @@ public class ManageServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gbk"); // 设置请求编码格式
-		response.setCharacterEncoding("gbk"); // 设置响应编码
-		response.setContentType("text/html;charset=gbk"); // 设置请求页面格式
+		request.setCharacterEncoding("utf-8"); // 设置请求编码格式
+		response.setCharacterEncoding("utf-8"); // 设置响应编码
+		response.setContentType("text/html;charset=utf-8"); // 设置请求页面格式
 		PrintWriter out = response.getWriter(); // 得到输出流对象
 		HttpSession session = request.getSession();
 		UserBean userBean = (UserBean) session.getAttribute("userBean");
@@ -87,7 +87,6 @@ public class ManageServlet extends HttpServlet {
 			String key = request.getParameter("key").trim(); // 得到搜索关键字
 			String type = request.getParameter("type").trim(); // 得到搜索类型
 			userBean.setNowPage(1);
-			//key = new String(key.getBytes(), "ISO-8859-1");
 			String hql = ""; // 记录搜索内容
 			String tp = ""; // 记录搜索内容总页数
 			String url = ""; // 用来存放跳转地址
@@ -121,15 +120,13 @@ public class ManageServlet extends HttpServlet {
 				tp = "select count(*) from ProviderInfo where pname like '%"
 						+ key + "%'"; // 搜索总页数的hql
 				url = "/providermanage.jsp"; // 要跳转到的url
-			} else if (type.equals("stockinfo")) {
+			} else if (type.equals("stockinfo")) {               //点击采购信息时
 				hql = "from StockInfo where sid like '%" + key + "%'"; // 得到搜索的hql
-				tp = "select count(*) from StockInfo where sid like '%" + key
-						+ "%'";// 得到搜索总页数的hql
+				tp = "select count(*) from StockInfo where sid like '%" + key+ "%'";// 得到搜索总页数的hql
 				url = "/stockmanage.jsp"; // 要跳转到的url
-			} else if (type.equals("sellinfo")) {
+			} else if (type.equals("sellinfo")) {                //点击销售信息时
 				hql = "from SellInfo where eid like '%" + key + "%'"; // 得到搜索对象的hql
-				tp = "select count(*) from SellInfo where eid like '%" + key
-						+ "%'";// 得到搜索总页数的hql
+				tp = "select count(*) from SellInfo where eid like '%" + key+ "%'";// 得到搜索总页数的hql
 				url = "/sellmanage.jsp"; // 要跳转到的url
 			} else if (type.equals("admininfo")) {
 				hql = "from AdminInfo where aname like '%" + key + "%'"; // 得到搜索对象的hql
@@ -222,12 +219,19 @@ public class ManageServlet extends HttpServlet {
 			ServletContext sc = getServletContext(); // 得到上下文
 			RequestDispatcher rd = sc.getRequestDispatcher(url);
 			rd.forward(request, response); // 页面跳转
-		} else if (action.equals("lookGoods")) {
+		} else if (action.equals("lookGoods")) {           //当查看商品资料表时
 			String gid = request.getParameter("gid").trim(); // 得到商品ID
 			GoodsInfo gi = (GoodsInfo) db.getObject("GoodsInfo", gid);// 得到商品对象
+			String type = request.getParameter("type").trim(); // 得到查看类型
+			String url="";//设置跳转地址
+			if(type.equals("modify")){//当点击为修改时
+				url="/modifygoods.jsp";
+			}else if(type.equals("look")){//当点击为查看时
+				url="/lookgoods.jsp";
+			}
 			request.setAttribute("object", gi); // 将商品对象放入请求中
 			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifygoods.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher(url);
 			rd.forward(request, response); // 页面跳转
 		} else if (action.equals("modifyGoods")) {
 			String gid = request.getParameter("gid").trim(); // 得到商品的ID
@@ -541,8 +545,6 @@ public class ManageServlet extends HttpServlet {
 			String pname = request.getParameter("pname").trim(); // 得到供应商
 			String sbuyer = request.getParameter("sbuyer").trim(); // 得到采购人
 			double stotalprice = Double.parseDouble(stp); // 类型转换
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 将供应商名转码
-			//sbuyer = new String(sbuyer.getBytes(), "ISO-8859-1"); // 将采购人转码
 			String hql = "select pid from ProviderInfo where pname='" + pname
 					+ "'";
 			String pid = (String) ((db.getInfo(hql)).get(0)); // 得到供应商ID
@@ -668,20 +670,14 @@ public class ManageServlet extends HttpServlet {
 			String etp = request.getParameter("etotalprice").trim(); // 得到总价格
 			String eseller = request.getParameter("eseller").trim(); // 得到销售表
 			double etotalprice = Double.parseDouble(etp); // 类型转换
-			//eseller = new String(eseller.getBytes(), "ISO-8859-1"); // 转码
-			//cname = new String(cname.getBytes(), "ISO-8859-1"); // 转码
-			String hql = "select cid from ConsumerInfo where cname ='" + cname
-					+ "'";
+			String hql = "select cid from ConsumerInfo where cname ='" + cname+ "'";
 			String cid = (String) ((db.getInfo(hql)).get(0)); // 得到客户ID
 			String eid = db.getId("SellInfo", "eid"); // 得到销售ID
-			SellInfo ei = new SellInfo(eid, cid, new Date(), etotalprice,
-					eseller);
+			SellInfo ei = new SellInfo(eid, cid, new Date(), etotalprice,eseller);
 			dbin.insertTable("SellInfo", ei); // 插入记录
-			int totalPage = db.getTotalPage(userBean.getPageHql(), userBean
-					.getSpan());
+			int totalPage = db.getTotalPage(userBean.getPageHql(), userBean.getSpan());
 			userBean.setTotalPage(totalPage); // 记住当前总页数
-			List goodslist = db.getPageContent(userBean.getHql(), userBean
-					.getNowPage(), userBean.getSpan()); // 得到列表
+			List goodslist = db.getPageContent(userBean.getHql(), userBean.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
 			ServletContext sc = getServletContext(); // 得到上下文
 			RequestDispatcher rd = sc.getRequestDispatcher("/sellmanage.jsp");
@@ -739,8 +735,7 @@ public class ManageServlet extends HttpServlet {
 			String cname = request.getParameter("cname").trim(); // 得到供应商名字
 			String eseller = request.getParameter("eseller").trim(); // 得到采购者
 			String edate = request.getParameter("edate").trim(); // 得到采购日期
-//			eseller = new String(eseller.getBytes(), "ISO-8859-1"); // 转码
-	//		cname = new String(cname.getBytes(), "ISO-8859-1"); // 软码
+			System.out.println(edate);
 			String hql = "from ConsumerInfo as ci where ci.cname='" + cname
 					+ "'"; // 搜索供应商ID的hql
 			ConsumerInfo ci = (ConsumerInfo) db.getInfo(hql).get(0); // 得到供应商对象

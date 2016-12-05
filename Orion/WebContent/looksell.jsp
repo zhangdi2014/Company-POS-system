@@ -16,7 +16,7 @@
   <head>
     <title>销售查看</title>
   </head>
-  <body bgcolor="#EBF5FD">
+  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -31,26 +31,22 @@
 	</table>
 	<hr color="black" size="1"/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售信息</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售信息</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>表&nbsp;单&nbsp;号</th>
 	    <th>客户名称</th>
 	    <th>销售日期</th>
 	  	<th>销售总价</th>
 	  	<th>销&nbsp;售&nbsp;人</th>
 	  </tr>
-	  <tr bgcolor="white" align="center">
+	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= ei.getEid() %></td>
-		<!--
-		<td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
+		
 		<td><%= ci.getCname() %></td>
 	     <td><%= (ei.getEdate().getYear()+1900)+"-"+
 	     		(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
 		<td><%= ei.getEtotalprice() %></td>
-		<!--
-		<td><%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
+		
 		<td><%= ei.getEseller() %></td>
 	  </tr>
 	</table>	
@@ -59,8 +55,8 @@
 	 %>
 	 <br/>
 	<table width="100%" border="0" cellspacing="1" bgcolor="black">
-	<caption>销售明细</caption>
-	  <tr bgcolor="#D1F1FE" align="center">
+	<caption style="color:white;font-size:22px">销售明细</caption>
+	  <tr bgcolor="#D1F1FE" align="center" height="40px">
 	    <th>商品名称</th>
 	    <th>商品数量</th>
 	    <th>商品售价</th>
@@ -72,16 +68,14 @@
 		GoodsInfo gi = (GoodsInfo)db.getObject("GoodsInfo",ed.getGid());
 		if(i%2==0){
 			i++;
-			out.println("<tr bgcolor='white' align='center'>");
+			out.println("<tr bgcolor='white' align='center' style='height:40px'>");
 		}
 		else{
 			i++;
-			out.println("<tr bgcolor='#EBF5FD' align='center'>");
+			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	 <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	  
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= ed.getEdamount() %></td>
 	  	<td><%= ed.getEdprice() %></td>

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 public class StockInfo {
 	private String sid;
@@ -24,7 +26,6 @@ public class StockInfo {
 		this.sbuyer = sbuyer;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sid") 
 	public String getSid() {
 		return sid;
@@ -39,7 +40,8 @@ public class StockInfo {
 	public void setPid(String pid) {
 		this.pid = pid;
 	}
-	@Column(name="sdate",insertable=false, updatable=false)
+	@Temporal(TemporalType.DATE)
+	@Column(name="sdate")
 	public Date getSdate() {
 		return sdate;
 	}
