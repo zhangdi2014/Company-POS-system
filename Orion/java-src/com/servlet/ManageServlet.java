@@ -60,8 +60,7 @@ public class ManageServlet extends HttpServlet {
 		if (action.equals("login")) { // 动作为登陆时
 			String aname = request.getParameter("uname").trim();// 得到用户名
 			String apwd = request.getParameter("upwd").trim(); // 得到密码
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 将用户名转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 将密码转码
+			
 			System.out.println(aname + "\t" + apwd);
 			String hql = "from AdminInfo as p " + // hql语句
 					"where p.aname='" + aname + "' and p.apwd='" + apwd + "'";
@@ -187,8 +186,7 @@ public class ManageServlet extends HttpServlet {
 			String pout = request.getParameter("gpout").trim(); // 得到商品售价
 			String amount = request.getParameter("gamount").trim(); // 得到商品数量
 			String gid = db.getId("GoodsInfo", "gid"); // 得到商品的ID
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 转码
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 转码
+	
 			String hql = "select gg.gcid from GoodsClassInfo as gg where gg.gcname='"
 					+ gcname + "'";
 			String gcid = (String) ((db.getInfo(hql)).get(0)); // 得到类别ID
@@ -196,14 +194,14 @@ public class ManageServlet extends HttpServlet {
 			List li = db.getInfo(temp);
 			String url = "";
 			if (li.isEmpty()) {
-				//gunit = new String(gunit.getBytes(), "ISO-8859-1"); // 转码
+				
 				double gpin = Double.parseDouble(pin); // 将String转为double型
 				double gpout = Double.parseDouble(pout); // 将String转为double型
 				int gamount = Integer.parseInt(amount); // 将String转为int型
 				GoodsInfo gi = new GoodsInfo(gid, gname, gcid, gunit, gpin,
 						gpout, gamount);
 				dbin.insertTable("GoodsInfo", gi); // 更新表格
-				// out.println("eval(\'alert(\'恭喜你,添加成功!!!\')\')");
+			
 				int totalPage = db.getTotalPage(userBean.getPageHql(), userBean
 						.getSpan());
 				userBean.setTotalPage(totalPage); // 记住当前总页数
@@ -241,9 +239,7 @@ public class ManageServlet extends HttpServlet {
 			String pin = request.getParameter("gpin").trim(); // 得到商品进价
 			String pout = request.getParameter("gpout").trim(); // 得到商品售价
 			String amount = request.getParameter("gamount").trim(); // 得到商品数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 转码
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 转码
-			//gunit = new String(gunit.getBytes(), "ISO-8859-1"); // 转码
+		
 			double gpin = Double.parseDouble(pin); // 将String转为double型
 			double gpout = Double.parseDouble(pout); // 将String转为double型
 			int gamount = Integer.parseInt(amount); // 将String转为int型
@@ -274,7 +270,7 @@ public class ManageServlet extends HttpServlet {
 			rd.forward(request, response); // 页面跳转
 		} else if (action.equals("addGoodsClass")) { // 当动作为添加商品类别时
 			String gcname = request.getParameter("gcname").trim(); // 得到要添加的类名
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 将类名转码
+			
 			String hql = "from GoodsClassInfo as gci where gci.gcname='"
 					+ gcname + "'";
 			List gclist = db.getInfo(hql);
@@ -310,7 +306,7 @@ public class ManageServlet extends HttpServlet {
 		} else if (action.equals("modifyGoodsClass")) { // 修改商品类别时
 			String gcid = request.getParameter("gcid").trim(); // 得到要修改类的ID
 			String gcname = request.getParameter("gcname").trim(); // 得到类名
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 将类名转码
+			
 			String url = "/goodsclassmanage.jsp";
 			String hql = "from GoodsClassInfo as gci where gci.gcname='"
 					+ gcname + "'";
@@ -356,12 +352,7 @@ public class ManageServlet extends HttpServlet {
 			if (cremark.equals("")) {
 				cremark = "暂无";
 			}
-			//cname = new String(cname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//clinkman = new String(clinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//caddress = new String(caddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ctel = new String(ctel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//cemail = new String(cemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//cremark = new String(cremark.getBytes(), "ISO-8859-1"); // 将备注转码
+			
 			String url = "/consumermanage.jsp";
 			String temp = "from ConsumerInfo as ci where ci.cname='" + cname
 					+ "'";
@@ -412,12 +403,7 @@ public class ManageServlet extends HttpServlet {
 			if (cremark.equals("")) {
 				cremark = "暂无";
 			}
-			//cname = new String(cname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//clinkman = new String(clinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//caddress = new String(caddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ctel = new String(ctel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//cemail = new String(cemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//cremark = new String(cremark.getBytes(), "ISO-8859-1"); // 将备注转码
+		
 			ConsumerInfo ci = new ConsumerInfo(cid, cname, clinkman, caddress,
 					ctel, cemail, cremark);
 			dbup.updateTable("ConsumerInfo", ci, cid); // 更新表格
@@ -455,12 +441,7 @@ public class ManageServlet extends HttpServlet {
 			if (premark.equals("")) {
 				premark = "暂无";
 			}
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//plinkman = new String(plinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//paddress = new String(paddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ptel = new String(ptel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//pemail = new String(pemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//premark = new String(premark.getBytes(), "ISO-8859-1"); // 将备注转码
+		
 			String temp = "from ProviderInfo as pi where pi.pname='" + pname
 					+ "'";
 			List plist = db.getInfo(temp);
@@ -510,12 +491,7 @@ public class ManageServlet extends HttpServlet {
 			if (premark.equals("")) {
 				premark = "暂无";
 			}
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//plinkman = new String(plinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//paddress = new String(paddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ptel = new String(ptel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//pemail = new String(pemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//premark = new String(premark.getBytes(), "ISO-8859-1"); // 将备注转码
+			
 			ProviderInfo pi = new ProviderInfo(pid, pname, plinkman, paddress,
 					ptel, pemail, premark);
 			dbup.updateTable("ProviderInfo", pi, pid); // 更新表格
@@ -582,7 +558,7 @@ public class ManageServlet extends HttpServlet {
 			String sid = request.getParameter("sid").trim(); // 得到采购单ID
 			String amount = request.getParameter("sdamount").trim(); // 得到采购数量
 			String gname = request.getParameter("gname").trim(); // 得到商品名字
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+		
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -607,8 +583,7 @@ public class ManageServlet extends HttpServlet {
 			String pname = request.getParameter("pname").trim(); // 得到供应商名字
 			String sbuyer = request.getParameter("sbuyer").trim(); // 得到采购者
 			String sdate = request.getParameter("sdate").trim(); // 得到采购日期
-			//sbuyer = new String(sbuyer.getBytes(), "ISO-8859-1"); // 转码
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 软码
+		
 			String hql = "from ProviderInfo as pi where pi.pname='" + pname
 					+ "'"; // 搜索供应商ID的hql
 			ProviderInfo pi = (ProviderInfo) db.getInfo(hql).get(0); // 得到供应商对象
@@ -703,7 +678,7 @@ public class ManageServlet extends HttpServlet {
 			String eid = request.getParameter("eid").trim(); // 得到销售单ID
 			String amount = request.getParameter("edamount").trim(); // 得到销售数量
 			String gname = request.getParameter("gname").trim(); // 得到商品名字
-//			gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -806,9 +781,8 @@ public class ManageServlet extends HttpServlet {
 			String aname = request.getParameter("aname").trim();
 			String apwd = request.getParameter("apwd").trim();
 			String fpwd = request.getParameter("fpwd").trim();
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 将用户名转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 将密码转码
-			//fpwd = new String(fpwd.getBytes(), "ISO-8859-1"); // 将新密码转码
+		
+		
 			String hql = "from AdminInfo as p " + // hql语句
 					"where p.aname='" + aname + "' and p.apwd='" + apwd + "'";
 			String msg = ""; // 记录提示信息
@@ -828,15 +802,13 @@ public class ManageServlet extends HttpServlet {
 		} else if (action.equals("addAdmin")) {
 			String aname = request.getParameter("aname").trim(); // 得到管理员名称
 			String apwd = request.getParameter("apwd").trim(); // 得到密码
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 转码
+	
 			String hql = "from AdminInfo as ai where ai.aname='" + aname + "'"; // 搜索管理员
 			List list = db.getInfo(hql); // 得到列表
 			String url = ""; // 用来存放跳转地址
 			if (list.isEmpty()) { // 当管理员不存在时
 				String aid = db.getId("AdminInfo", "aid"); // 得到管理员ID
-				///AdminInfo ai = new AdminInfo(aid, aname, apwd, new String("普通"
-						//.getBytes(), "ISO-8859-1"));
+			
 				
 				AdminInfo ai = new AdminInfo(aid, aname, apwd, "普通");
 				dbin.insertTable("AdminInfo", ai); // 添加对象
@@ -858,8 +830,7 @@ public class ManageServlet extends HttpServlet {
 		} else if (action.equals("deleteAdmin")) { // 当动作为删除管理员时
 			String aid = request.getParameter("aid").trim();
 			AdminInfo ai = (AdminInfo) db.getObject("AdminInfo", aid);
-			//String alevel = new String(ai.getAlevel().getBytes("ISO-8859-1"),
-			//		"gbk");
+		
 			String alevel = ai.getAlevel();
 			String url = "/adminmanage.jsp";
 			if (alevel.equals("普通")) {
@@ -882,9 +853,7 @@ public class ManageServlet extends HttpServlet {
 		} else if (action.equals("resetApwd")) {
 			String aname = request.getParameter("aname").trim(); // 得到管理员名称
 			String apwd = request.getParameter("apwd").trim(); // 得到新密码
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 转码
-
+		
 			String hql = "from AdminInfo where aname='" + aname + "'";
 			AdminInfo ai = ((List<AdminInfo>) db.getInfo(hql)).get(0);
 			ai.setApwd(apwd);
@@ -971,7 +940,7 @@ public class ManageServlet extends HttpServlet {
 			String cbid = request.getParameter("cbid").trim(); // 得到退货单ID
 			String gname = request.getParameter("gname").trim(); // 得到退货商品名
 			String amount = request.getParameter("cbdamount").trim(); // 得到退货数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+	
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -1007,7 +976,7 @@ public class ManageServlet extends HttpServlet {
 			String pbid = request.getParameter("pbid").trim(); // 得到退货单ID
 			String gname = request.getParameter("gname").trim(); // 得到退货商品名
 			String amount = request.getParameter("pbdamount").trim(); // 得到退货数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+			
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
