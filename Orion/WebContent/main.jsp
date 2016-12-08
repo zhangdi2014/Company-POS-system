@@ -59,7 +59,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="statistic.jsp" class="to top" >
+			<a href="ManageServlet?action=search&key=&type=sta" target="mainFrame" class="to top" >
 				<i class="fa fa-pencil"><img src="img/kctj.gif" /></i>
 				<span>¿â´æÍ³¼Æ</span>
 			</a>

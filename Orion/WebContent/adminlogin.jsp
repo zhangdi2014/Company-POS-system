@@ -61,10 +61,30 @@
 			      document.all.mf.submit();
 			    }
 			//document.all.mf.submit();
+			
 			}
+		
+		  //回车时，默认是登陆
+	 function on_return(){
+		 if(window.event.keyCode == 13){
+		  if (document.all('lg')!=null){
+		   document.all('lg').click();
+		   }
+		 }
+		 }        
 </script>
+
+
+
+
+
+
+
+
+
+
 	</head>
-	<body>
+	<body onkeydown="on_return()">
 		<dl class="admin_login">
 		 <dt>
 		  <strong>公司pos系统</strong>
@@ -86,6 +106,12 @@
 			 </dd>
 			 <dd>
 			  <input type="button" value="立即登录"  id="lg" onclick="javascript:return dl(uname.value,upwd.value)" style="width:100%;height:42px;border:none;font-size:16px;background:#048f74;color:#f8f8f8;"/>
+
+
+
+
+
+
 
 			 </dd>
 			 <input type="hidden" name="action" value="login" />
