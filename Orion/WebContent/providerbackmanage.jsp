@@ -105,7 +105,9 @@
 		}
 	   %>
 	     <td><%= pb.getPbid() %></td>
-	   
+	     <!--
+	     <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
+	     -->
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pb.getSid() %></td>
 	     <td><%= (pb.getPbdate().getYear()+1900)+"-"+

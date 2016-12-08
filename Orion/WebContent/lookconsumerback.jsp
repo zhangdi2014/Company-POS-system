@@ -40,7 +40,9 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= cb.getCbid() %></td>
-	     
+	     <!--
+	     <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
+	     -->
 	     <td><%= ci.getCname() %></td>
 	     <td><%= cb.getEid() %></td>
 	     <td><%= (cb.getCbdate().getYear()+1900)+"-"+
@@ -73,7 +75,9 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	  
+	   <!--
+	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
+	   -->
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= cbd.getCbdamount() %></td>
 	  	<td><%= cbd.getCbdprice() %></td>

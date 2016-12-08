@@ -1,3 +1,4 @@
+<!-- 采购信息的修改 -->
 <%@ page contentType="text/html;charset=UTF-8"
 	import="com.entity.StockInfo,com.entity.StockDetail,java.util.*,com.db.DButil,
 		org.springframework.web.context.*,org.springframework.web.context.support.*,
@@ -94,11 +95,9 @@
 	<br/><br/>
 	<table align="center">
 	  <tr>
-	    <td><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:checkInfo()"
-          	  style="cursor:hand"/></td>
+	    <td><img border="0" src="img/xg.gif" id="xg" onclick="JavaScript:checkInfo()"style="cursor:hand"/></td>
         <td width="20%"></td>
-	    <td><img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-          	  style="cursor:hand"/></td>
+	    <td><img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"style="cursor:hand"/></td>
 	  </tr>
 	  <input type="hidden" name="action" value="modifyStock"/>
 	  <input type="hidden" name="sid" value="<%= si.getSid() %>"/>
@@ -133,7 +132,6 @@
 	   	<form id="mfd<%= i %>" method="post" action="ManageServlet">
 	   	<input type="hidden" name="action" value="modifyStockDetail"/>
 	   	<input type="hidden" name="sdid" value="<%= sd.getSdid() %>"/>
-	   	
 	  	<td><%= gi.getGname() %></td>
 	  	<td><input name="sdamount" id="amount<%= i %>" value="<%= sd.getSdamount() %>"/></td>
 	  	<td><%= sd.getSdprice() %></td>

@@ -95,7 +95,11 @@
 				out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 			}
 	   %>
-	  
+	   <!--
+	    <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
+	     <td><%= new String(pi.getPlinkman().getBytes("ISO-8859-1"),"gbk") %></td>
+	     <td><%= new String(pi.getPtel().getBytes("ISO-8859-1"),"gbk") %></td> 
+	   -->
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pi.getPlinkman() %></td>
 	     <td><%= pi.getPtel() %></td> 

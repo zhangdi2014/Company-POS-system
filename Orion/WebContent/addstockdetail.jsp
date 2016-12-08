@@ -86,7 +86,6 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	  
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= sd.getSdamount() %></td>
 	  	<td>--</td>

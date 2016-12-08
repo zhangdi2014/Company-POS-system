@@ -88,7 +88,9 @@
 		</td>
 	     <td><input name="edate" id="edate" value="<%= day %>"/></td>
 		<td><%= ei.getEtotalprice() %></td>
-		
+		<!--
+		<td><input name="eseller" id="eseller" value="<%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %>" /></td>
+		-->
 		<td><input name="eseller" id="eseller" value="<%= ei.getEseller()%>" /></td>
 	  </tr>
 	</table>

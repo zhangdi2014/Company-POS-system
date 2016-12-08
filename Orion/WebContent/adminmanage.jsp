@@ -8,7 +8,6 @@
 		response.sendRedirect("adminlogin.jsp");
 	}
 	else{
-		//alevel = new String(alevel.getBytes("ISO-8859-1"),"gbk");
 		if(alevel.equals("普通")){
 			out.println("<br/><br/><br/><br/><center><h1>无此权限!!!</h1></center>");
 		}
@@ -103,7 +102,6 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	 %>
-	 
 	 	<td><%= ai.getAname() %></td>
 	 	<td><%= ai.getAlevel() %></td>
 	 	<td width="33%"><a href="JavaScript:delete_sure('ManageServlet?action=deleteAdmin&aid=<%= ai.getAid()%>')"><img border="0" src="img/del.gif"/>删除</a></td> 		 

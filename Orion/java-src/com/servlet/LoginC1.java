@@ -32,10 +32,7 @@ public class LoginC1 extends HttpServlet {
 		if(checkCode.equals(checkCode2)){
 			request.getRequestDispatcher("/ManageServlet").forward(request,response);
 		}else{
-			//request.getRequestDispatcher("login.jsp").forward(request, response);
-					
-		
-			response.sendRedirect("/Orion/adminlogin.jsp");
+				response.sendRedirect("/Orion/adminlogin.jsp");
 		}
 	}
 

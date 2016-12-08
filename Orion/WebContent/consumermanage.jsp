@@ -95,7 +95,6 @@
 				out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 			}
 	   %>
-	   
 	     <td><%= ci.getCname() %></td>
 	     <td><%= ci.getClinkman() %></td>
 	     <td><%= ci.getCtel() %></td>

@@ -25,32 +25,50 @@
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">供应商名称:</td>
+	    <!--
+	    <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
 	    
+	    -->
 	    <td><%= pi.getPname() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">联&nbsp;系&nbsp;人:</td>
+	    	    <!--
+	    <td><%= new String(pi.getPlinkman().getBytes("ISO-8859-1"),"gbk") %></td>
 	    
+	    -->
 	    <td><%= pi.getPlinkman() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">公司地址:</td>
+	    	    <!--
+	    <td><%= new String(pi.getPaddress().getBytes("ISO-8859-1"),"gbk") %></td>
 	    
+	    -->
 	    <td><%= pi.getPaddress() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">公司电话:</td>
-	    	
+	    	    <!--
+	    
+	     <td><%= new String(pi.getPtel().getBytes("ISO-8859-1"),"gbk") %></td>
+	    -->
 	    <td><%= pi.getPtel() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">E-mail:</td>
-	    	
+	    	    <!--
+	    
+	    <td><%= new String(pi.getPemail().getBytes("ISO-8859-1"),"gbk") %></td>
+	    -->
 	    <td><%= pi.getPemail() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
-	    	
+	    	    <!--
+	    
+	    <td><%= new String(pi.getPremark().getBytes("ISO-8859-1"),"gbk") %></td>
+	    -->
 	    <td><%= pi.getPremark() %></td>
 	  </tr>
 	</table>	

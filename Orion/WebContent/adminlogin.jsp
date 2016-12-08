@@ -1,60 +1,96 @@
 <!-- 登录页的设置 -->
 <%@ page contentType="text/html; charset=UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>登录主页</title>
-		<link rel=stylesheet href="css/style.css" type="text/css">
-		<script language="JavaScript" src="script/trim.js"></script>
+		<meta charset="utf-8"/>
+		<title>后台登录</title>
+		<meta name="author" content="DeathGhost" />
+		<link rel="stylesheet" type="text/css" href="css/adminlogin.css" tppabs="css/adminlogin.css" />
+		<style>
+		body{height:100%;background:#16a085;overflow:hidden;}
+		canvas{z-index:-1;position:absolute;}
+		</style>
+		<script src="script/jquery.js"></script>
+		<script src="script/verificationNumbers.js" tppabs="script/verificationNumbers.js"></script>
+		<script src="script/Particleground.js" tppabs="script/Particleground.js"></script>
+		<script>
+		$(document).ready(function() {
+		  //粒子背景特效
+		  $('body').particleground({
+		    dotColor: '#5cbdaa',
+		    lineColor: '#5cbdaa'
+		  });
+		  //验证码
+		  createCode();
+		  //测试提交，对接程序删除即可
+		  $(".submit_btn").click(function(){
+			  location.href="javascrpt:;"/*tpa=http://***index.html*/;
+			  });
+		});
+		</script>
 		<script language="JavaScript">
-		function dl(name,pwd,checkcode){
+		function dl(name,pwd){
 			if (name==""){
 				alert('用户名为空,请重新输入');
 		        return false;}
 			if (pwd==""){
 			 alert('密码为空,请重新输入');
 			 return false;}
-			if(checkcode==""){
-				alert("验证码为空,请重新输入!!!");//弹出对话框
-				return false;
+			 var inputCode = document.getElementById("J_codetext").value.toUpperCase();
+			 var codeToUp=code.toUpperCase();
+			    if(inputCode.length <=0) {
+			      document.getElementById("J_codetext").setAttribute("placeholder","输入验证码");
+			      alert('验证码为空,请重新输入');
+			      createCode();
+			      return false;
+			    }
+			    else if(inputCode != codeToUp ){
+			      document.getElementById("J_codetext").value="";
+			      document.getElementById("J_codetext").setAttribute("placeholder","验证码错误");
+			      alert('验证码错误,请重新输入');
+			      createCode();
+			      return false;
+			    }
+			    else if(inputCode == codeToUp ){
+			      //window.open(document.getElementById("J_down").getAttribute("data-link"));
+			      document.getElementById("J_codetext").value="";
+			      document.getElementById("J_codetext").setAttribute("placeholder","验证码正确");
+			      createCode();
+			      document.all.mf.submit();
+			    }
+			//document.all.mf.submit();
 			}
-			document.all.mf.submit();
-			}
+</script>
+	</head>
+	<body>
+		<dl class="admin_login">
+		 <dt>
+		  <strong>公司pos系统</strong>
+		  <em>company Pos System</em>
+		 </dt>
+		 <form action="ManageServlet" method="post" id="mf">
+			 <dd class="user_icon">
+			  <input type="text" id="uname" name="uname" placeholder="账号" class="login_txtbx" value="zrk"/>
+			 </dd>
+			 <dd class="pwd_icon">
+			  <input type="password" id="upwd" name="upwd" placeholder="密码" class="login_txtbx" value="123"/>
+			 </dd>
+			 <dd class="val_icon">
+			  <div class="checkcode">
+			    <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+			    <canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+			  </div>
+			  <input type="button" value="看不清，换一张" class="ver_btn" onClick="validate()"/>
+			 </dd>
+			 <dd>
+			  <input type="button" value="立即登录"  id="lg" onclick="javascript:return dl(uname.value,upwd.value)" style="width:100%;height:42px;border:none;font-size:16px;background:#048f74;color:#f8f8f8;"/>
 
-	   </script>
-</head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 1000px">
-    <div class="out" >
-	  <div class="login_style" align="center">
-	    <center>
-		  <form action="LoginC1" method="post" id="mf" target="bottom">
-			<table>
-			  <tr>
-				<td><b>用户名:</b></td>
-				<td><input type="text" id="uname" name="uname" value="zrk" /></td>
-			  </tr>
-			  <tr>
-				<td><b>密码:</b></td>
-				<td><input type="password" id="upwd" name="upwd" value="123" /></td>
-			  </tr>
-			  <tr>
-				<td><b>验证码</b>:</td>
-				<td>
-				  <input type="text"  id="checkcode" name="checkcode"/>
-				  <img src="/Orion/CreatCode"/>
-				</td>
-			  </tr>
-							
-			  <tr>
-				<td colspan="2" align="center">
-                  <img src="img/ddl.gif" id="lg" onclick="javascript:return dl(uname.value,upwd.value,checkcode.value)" style="cursor: hand"/>
-				  <img src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()" style="cursor: hand"/>
-				</td>
-			  </tr>
-			</table>
-			<input type="hidden" name="action" value="login" />
-		  </form>
-		</center>
-	  </div>
-	</div>
-  </body>
+			 </dd>
+			 <input type="hidden" name="action" value="login" />
+		 </form>
+		
+		</dl>
+	</body>
 </html>

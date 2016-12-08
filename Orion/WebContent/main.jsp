@@ -4,58 +4,73 @@
 <html>
   <head>
     <title>示例</title>
-    <link rel=stylesheet href="css/style.css" type="text/css">
+    <link rel=stylesheet href="css/main.css" type="text/css" media="screen">
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
     <jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
-    <center><br/><br/><br/><br/><br/>
-    <table width="80%" height="60%">
-      <tr align="center" height="150">
-        <td><div class="block" >
-      	  <a href="ManageServlet?action=search&key=&type=goodsinfo" target="mainFrame"><img src="img/spzl.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=goodsinfo" target="mainFrame"><font><b>商品资料</b></font></a>      	        
-      	</div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=goodsclassinfo" target="mainFrame"><img src="img/splb.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=goodsclassinfo" target="mainFrame"><font><b>商品类别</b></font></a>
-      	</div></td>
-        <td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=consumerinfo" target="mainFrame"><img src="img/khzl.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=consumerinfo" target="mainFrame"><font><b>客户资料</b></font></a>
-      	</div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=providerinfo" target="mainFrame"><img src="img/gyszl.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=providerinfo" target="mainFrame"><font><b>供应商资料</b></font></a>
-      </tr>
-      <tr align="center" height="150">
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=stockinfo" target="mainFrame"><img src="img/cgxx.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=stockinfo" target="mainFrame"><font><b>采购信息</b></font></a>
-      	</div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=providerback" target="mainFrame"><img src="img/cgth.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=providerback" target="mainFrame"><font><b>采购退货</b></font></a>
-      	  </div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=sellinfo" target="mainFrame"><img src="img/xsxx.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=sellinfo" target="mainFrame"><font><b>销售信息</b></font></a>
-      	</div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=consumerback" target="mainFrame"><img src="img/xsth.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=consumerback" target="mainFrame"><font><b>销售退货</b></font></a>
-      	</div></td>      	
-      </tr>
-      <tr align="center" height="150">
-      	<td><div class="block">
-      	  <a href="statistic.jsp"><img src="img/kctj.gif" /></a><p/>
-      	  <a href="statistic.jsp"><font><b>库存统计</b></font></a>
-      	</div></td>
-      	<td><div class="block">
-      	  <a href="ManageServlet?action=search&key=&type=admininfo" target="mainFrame"><img src="img/xtwh.gif" /></a><p/>
-      	  <a href="ManageServlet?action=search&key=&type=admininfo" target="mainFrame"><font><b>系统维护</b></font></a>
-      	</div></td>
-      </tr>
-    </table>
-    </center>
+    <div class="container">
+	<ul class="navigation">
+		<li>
+			<a href="ManageServlet?action=search&key=&type=goodsinfo" target="mainFrame" class="to top">
+				<i class="fa fa-home"><img src="img/spzl.gif" /></i>
+				<span>商品资料</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=goodsclassinfo" target="mainFrame" class="to bottom">
+				<i class="fa fa-qrcode"><img src="img/splb.gif" /></i>
+				<span>商品类别</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=consumerinfo" target="mainFrame" class="to right">
+				<i class="fa fa-flash"><img src="img/khzl.gif" /></i>
+				<span>客户资料</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=providerinfo" target="mainFrame" class="to left">
+				<i class="fa fa-pencil"><img src="img/gyszl.gif" /></i>
+				<span>供应商资料</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=stockinfo" target="mainFrame" class="to bottom">
+				<i class="fa fa-heart"><img src="img/cgxx.gif" /></i>
+				<span>采购信息</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=providerback" target="mainFrame" class="to top">
+				<i class="fa fa-home"><img src="img/cgth.gif" /></i>
+				<span>采购退货</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=sellinfo" target="mainFrame" class="to right">
+				<i class="fa fa-qrcode"><img src="img/xsxx.gif" /></i>
+				<span>销售信息</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=consumerback" target="mainFrame" class="to left">
+				<i class="fa fa-flash"><img src="img/xsth.gif" /></i>
+				<span>销售退货</span>
+			</a>
+		</li>
+		<li>
+			<a href="statistic.jsp" class="to top" >
+				<i class="fa fa-pencil"><img src="img/kctj.gif" /></i>
+				<span>库存统计</span>
+			</a>
+		</li>
+		<li>
+			<a href="ManageServlet?action=search&key=&type=admininfo" target="mainFrame" class="to bottom">
+				<i class="fa fa-heart"><img src="img/xtwh.gif" /></i>
+				<span>系统维护</span>
+			</a>
+		</li>
+	</ul>
+</div>
   </body>
 </html>

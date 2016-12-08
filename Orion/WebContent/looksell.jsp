@@ -41,12 +41,16 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= ei.getEid() %></td>
-		
+		<!--
+		<td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
+		-->
 		<td><%= ci.getCname() %></td>
 	     <td><%= (ei.getEdate().getYear()+1900)+"-"+
 	     		(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
 		<td><%= ei.getEtotalprice() %></td>
-		
+		<!--
+		<td><%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %></td>
+		-->
 		<td><%= ei.getEseller() %></td>
 	  </tr>
 	</table>	
@@ -75,7 +79,9 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	  
+	   <!--
+	 <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
+	   -->
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= ed.getEdamount() %></td>
 	  	<td><%= ed.getEdprice() %></td>

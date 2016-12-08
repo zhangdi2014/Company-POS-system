@@ -6,7 +6,7 @@
     <param-value>FeidaPos.root</param-value>
   </context-param>
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>adminlogin.jsp</welcome-file>
   </welcome-file-list>
   <context-param>
     <param-name>contextConfigLocation</param-name>

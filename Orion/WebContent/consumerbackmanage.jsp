@@ -106,7 +106,6 @@
 		}
 	   %>
 	     <td><%= cb.getCbid() %></td>
-	    
 	     <td><%= ci.getCname() %></td>
 	     <td><%= cb.getEid() %></td>
 	     <td><%= (cb.getCbdate().getYear()+1900)+"-"+

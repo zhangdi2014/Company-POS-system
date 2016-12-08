@@ -56,9 +56,10 @@
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">商品名称:</td>
-	    
-	    <td><input name="gunit" style="height:30px" id="gunit" value="<%= gi.getGname() %>"/></td>
-	    
+	    <!--
+	    <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
+	    -->
+	    <td><%= gi.getGname() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">商品类别:</td>
@@ -88,7 +89,10 @@
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">计量单位:</td>
-	  	
+	  	<!--
+	  	<td><input name="gunit" id="gunit" 
+	  		value="<%= new String(gi.getGunit().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	  	-->
 	  	<td><input name="gunit" style="height:30px" id="gunit" value="<%= gi.getGunit() %>"/></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
@@ -115,7 +119,9 @@
 	</table>
 	<input type="hidden" name="action" value="modifyGoods"/>
 	<input type="hidden" name="gid" value="<%= gi.getGid() %>"/>
-	
+	<!--
+	<input type="hidden" name="gname" value="<%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %>"/>
+	-->
 	<input type="hidden" name="gname" value="<%= gi.getGname() %>"/>
 	</form>
   </body>

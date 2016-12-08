@@ -52,7 +52,9 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= pb.getPbid() %></td>
-	     
+	     <!--
+	     <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
+	     -->
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pb.getSid() %></td>
 	     <td><%= (pb.getPbdate().getYear()+1900)+"-"+
@@ -89,7 +91,9 @@
 	   	<form id="mfd<%= i %>" method="post" action="ManageServlet">
 	   	<input type="hidden" name="action" value="modifyProviderBackDetail"/>
 	   	<input type="hidden" name="pbdid" value="<%= pbd.getPbdid() %>"/>
-	   	
+	   	<!--
+	   		<td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
+	   	-->
 	  	<td><%= gi.getGname() %></td>
 	  	<td><input name="pbdamount" id="amount<%= i %>" value="<%= pbd.getPbdamount() %>"/></td>
 	  	<td><%= pbd.getPbdprice() %></td>

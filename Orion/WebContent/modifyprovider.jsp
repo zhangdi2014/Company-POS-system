@@ -44,35 +44,52 @@
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">供应商名称:</td>
-	    
+	    <!--
+	    <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
+	    -->
 	    <td><%= pi.getPname() %></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">联&nbsp;系&nbsp;人:</td>
-	   
+	    <!--
+	    <td><input name="plinkman" id="plinkman"
+	    	 value="<%= new String(pi.getPlinkman().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	    -->
 	    <td><input name="plinkman" id="plinkman" style="height:30px;font-size:16px" value="<%= pi.getPlinkman() %>"/></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">公司地址:</td>
-	   
+	    <!--
+	    	 <td><input name="paddress" id="paddress"
+	    	 value="<%= new String(pi.getPaddress().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	    -->
 	    <td><input name="paddress" id="paddress" style="height:30px;font-size:16px" value="<%= pi.getPaddress() %>"/></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">公司电话:</td>
 	    
-	    
+	    <!--
+	    <td><input name="ptel" id="ptel"
+	    	 value="<%= new String(pi.getPtel().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	    -->
 	    <td><input name="ptel" id="ptel" style="height:30px;font-size:16px"
 	    	 value="<%= pi.getPtel() %>"/></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">E-mail:</td>
-	   
+	    <!--
+	    <td><input name="pemail" id="pemail"
+	    	 value="<%= new String(pi.getPemail().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	    -->
 	    <td><input name="pemail" id="pemail" style="height:30px;font-size:16px"
 	    	 value="<%= pi.getPemail() %>"/></td>
 	  </tr>
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
-	   
+	    <!--
+	     <td><input name="premark" id="premark" size="50"
+	    	 value="<%= new String(pi.getPremark().getBytes("ISO-8859-1"),"gbk") %>"/></td>
+	    -->
 	    <td><input name="premark" id="premark" size="50" style="height:30px;font-size:16px"
 	    	 value="<%= pi.getPremark() %>"/></td>
 	  </tr>
@@ -88,7 +105,9 @@
 	</table>
 	<input type="hidden" name="action" value="modifyProvider"/>
 	<input type="hidden" name="pid" value="<%= pi.getPid() %>"/>
-	
+	<!--
+	<input type="hidden" name="pname" value="<%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %>"/>
+	-->
 	<input type="hidden" name="pname" value="<%= pi.getPname() %>"/>
 	</form>
   </body>

@@ -54,7 +54,7 @@
       	  <% 
 			List<String> aname = db.getAdmin();
 			for(String name:aname){
-				
+				//sname = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 
