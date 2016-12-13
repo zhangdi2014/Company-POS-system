@@ -35,7 +35,7 @@ public class ManageServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		this.doPost(request, response); // 调用doPost方法
+		this.doPost(request, response); 
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -75,12 +75,14 @@ public class ManageServlet extends HttpServlet {
 				request.setAttribute("msg", msg); // 将错误信息添加到请求中
 				url = "/info.jsp";
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
 		} else if (action.equals("logout")) { // 当管理员注销时
 			request.getSession(true).invalidate(); // 使session失效
-			response.sendRedirect("adminlogin.jsp"); // 页面跳转
+
+			
+			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);			
 		} else if (action.equals("search")) { // 请求动作为搜索时
 			String key = request.getParameter("key").trim(); // 得到搜索关键字
 			String type = request.getParameter("type").trim(); // 得到搜索类型
@@ -164,9 +166,9 @@ public class ManageServlet extends HttpServlet {
 			List list = db.getPageContent(hql, userBean.getNowPage(), userBean
 					.getSpan());
 			request.setAttribute("goodslist", list); // 将页面内容放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+	
+			
+			request.getRequestDispatcher(url).forward(request, response);	
 		} else if (action.equals("changePage")) {
 			String page = request.getParameter("page").trim(); // 得到要跳转到的页数
 			String url = request.getParameter("pagename").trim(); // 得到页面的名字
@@ -174,9 +176,9 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到商品列表
 			request.setAttribute("goodslist", goodslist); // 将列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);		
 		} else if (action.equals("addGoods")) {
 			String gname = request.getParameter("gname").trim(); // 得到商品名称
 			String gcname = request.getParameter("gcname").trim(); // 得到商品类别
@@ -185,8 +187,7 @@ public class ManageServlet extends HttpServlet {
 			String pout = request.getParameter("gpout").trim(); // 得到商品售价
 			String amount = request.getParameter("gamount").trim(); // 得到商品数量
 			String gid = db.getId("GoodsInfo", "gid"); // 得到商品的ID
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 转码
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 转码
+			
 			String hql = "select gg.gcid from GoodsClassInfo as gg where gg.gcname='"
 					+ gcname + "'";
 			String gcid = (String) ((db.getInfo(hql)).get(0)); // 得到类别ID
@@ -194,14 +195,14 @@ public class ManageServlet extends HttpServlet {
 			List li = db.getInfo(temp);
 			String url = "";
 			if (li.isEmpty()) {
-				//gunit = new String(gunit.getBytes(), "ISO-8859-1"); // 转码
+				
 				double gpin = Double.parseDouble(pin); // 将String转为double型
 				double gpout = Double.parseDouble(pout); // 将String转为double型
 				int gamount = Integer.parseInt(amount); // 将String转为int型
 				GoodsInfo gi = new GoodsInfo(gid, gname, gcid, gunit, gpin,
 						gpout, gamount);
 				dbin.insertTable("GoodsInfo", gi); // 更新表格
-				// out.println("eval(\'alert(\'恭喜你,添加成功!!!\')\')");
+				
 				int totalPage = db.getTotalPage(userBean.getPageHql(), userBean
 						.getSpan());
 				userBean.setTotalPage(totalPage); // 记住当前总页数
@@ -214,9 +215,9 @@ public class ManageServlet extends HttpServlet {
 				String msg = "该物品已经存在,不可添加!!!";
 				request.setAttribute("msg", msg);
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);			
 		} else if (action.equals("lookGoods")) {           //当查看商品资料表时
 			String gid = request.getParameter("gid").trim(); // 得到商品ID
 			GoodsInfo gi = (GoodsInfo) db.getObject("GoodsInfo", gid);// 得到商品对象
@@ -228,9 +229,9 @@ public class ManageServlet extends HttpServlet {
 				url="/lookgoods.jsp";
 			}
 			request.setAttribute("object", gi); // 将商品对象放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);		
 		} else if (action.equals("modifyGoods")) {
 			String gid = request.getParameter("gid").trim(); // 得到商品的ID
 			String gname = request.getParameter("gname").trim(); // 得到商品名称
@@ -239,9 +240,7 @@ public class ManageServlet extends HttpServlet {
 			String pin = request.getParameter("gpin").trim(); // 得到商品进价
 			String pout = request.getParameter("gpout").trim(); // 得到商品售价
 			String amount = request.getParameter("gamount").trim(); // 得到商品数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 转码
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 转码
-			//gunit = new String(gunit.getBytes(), "ISO-8859-1"); // 转码
+		
 			double gpin = Double.parseDouble(pin); // 将String转为double型
 			double gpout = Double.parseDouble(pout); // 将String转为double型
 			int gamount = Integer.parseInt(amount); // 将String转为int型
@@ -253,10 +252,10 @@ public class ManageServlet extends HttpServlet {
 			dbup.updateTable("GoodsInfo", gi, gid);
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan());
-			request.setAttribute("goodslist", goodslist); //
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/goodsmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+			request.setAttribute("goodslist", goodslist); 
+
+			
+			request.getRequestDispatcher("/goodsmanage.jsp").forward(request, response);			
 		} else if (action.equals("deleteGoods")) { // 当动作为删除商品时
 			String gid = request.getParameter("gid").trim(); // 得到商品ID
 			dbde.deleteTable("GoodsInfo", gid);
@@ -267,12 +266,12 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到商品列表
 			request.setAttribute("goodslist", goodslist); // 将列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/goodsmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/goodsmanage.jsp").forward(request, response);		
 		} else if (action.equals("addGoodsClass")) { // 当动作为添加商品类别时
 			String gcname = request.getParameter("gcname").trim(); // 得到要添加的类名
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 将类名转码
+			
 			String hql = "from GoodsClassInfo as gci where gci.gcname='"
 					+ gcname + "'";
 			List gclist = db.getInfo(hql);
@@ -293,22 +292,19 @@ public class ManageServlet extends HttpServlet {
 				request.setAttribute("msg", msg);
 			}
 
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+			
+			request.getRequestDispatcher(url).forward(request, response);	
 		} else if (action.equals("lookGoodsClass")) {
 			String gcid = request.getParameter("gcid").trim(); // 得到商品类别ID
 			GoodsClassInfo gci = (GoodsClassInfo) db.getObject(
 					"GoodsClassInfo", gcid);// 得到类别对象
 			request.setAttribute("object", gci); // 将类别对象放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/modifygoodsclass.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/modifygoodsclass.jsp").forward(request,response);			
 		} else if (action.equals("modifyGoodsClass")) { // 修改商品类别时
 			String gcid = request.getParameter("gcid").trim(); // 得到要修改类的ID
 			String gcname = request.getParameter("gcname").trim(); // 得到类名
-			//gcname = new String(gcname.getBytes(), "ISO-8859-1"); // 将类名转码
 			String url = "/goodsclassmanage.jsp";
 			String hql = "from GoodsClassInfo as gci where gci.gcname='"
 					+ gcname + "'";
@@ -324,9 +320,10 @@ public class ManageServlet extends HttpServlet {
 				String msg = "该类名已经存在,不可修改!!!";
 				request.setAttribute("msg", msg);
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+			
+
+			request.getRequestDispatcher(url).forward(request, response);
+	
 		} else if (action.equals("deleteGoodsClass")) {
 			String gcid = request.getParameter("gcid").trim(); // 得到类别ID
 			dbde.deleteTable("GoodsClassInfo", gcid); // 将该对象删除
@@ -337,10 +334,9 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到商品列表
 			request.setAttribute("goodslist", goodslist); // 将列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/goodsclassmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+			
+
+			request.getRequestDispatcher("/goodsclassmanage.jsp").forward(request, response);			
 		} else if (action.equals("addConsumer")) {
 			String cname = request.getParameter("cname").trim(); // 得到客户名
 			String clinkman = request.getParameter("clinkman").trim(); // 得到联系人
@@ -354,12 +350,7 @@ public class ManageServlet extends HttpServlet {
 			if (cremark.equals("")) {
 				cremark = "暂无";
 			}
-			//cname = new String(cname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//clinkman = new String(clinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//caddress = new String(caddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ctel = new String(ctel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//cemail = new String(cemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//cremark = new String(cremark.getBytes(), "ISO-8859-1"); // 将备注转码
+			
 			String url = "/consumermanage.jsp";
 			String temp = "from ConsumerInfo as ci where ci.cname='" + cname
 					+ "'";
@@ -380,9 +371,9 @@ public class ManageServlet extends HttpServlet {
 				url = "/info.jsp";
 				request.setAttribute("msg", msg);
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);					
 		} else if (action.equals("lookConsumer")) {
 			String cid = request.getParameter("cid").trim(); // 得到客户ID
 			String type = request.getParameter("type").trim(); // 得到查看类型
@@ -392,9 +383,9 @@ public class ManageServlet extends HttpServlet {
 			}
 			ConsumerInfo ci = (ConsumerInfo) db.getObject("ConsumerInfo", cid); // 得到对象
 			request.setAttribute("object", ci); // 将类别对象放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);	
 		} else if (action.equals("modifyConsumer")) {
 			System.out.println("modifyConsumer");
 			String cid = request.getParameter("cid").trim();
@@ -410,22 +401,17 @@ public class ManageServlet extends HttpServlet {
 			if (cremark.equals("")) {
 				cremark = "暂无";
 			}
-			//cname = new String(cname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//clinkman = new String(clinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//caddress = new String(caddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ctel = new String(ctel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//cemail = new String(cemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//cremark = new String(cremark.getBytes(), "ISO-8859-1"); // 将备注转码
+			
 			ConsumerInfo ci = new ConsumerInfo(cid, cname, clinkman, caddress,
 					ctel, cemail, cremark);
 			dbup.updateTable("ConsumerInfo", ci, cid); // 更新表格
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/consumermanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/consumermanage.jsp").forward(request, response);
 		} else if (action.equals("deleteConsumer")) {
 			String cid = request.getParameter("cid").trim(); // 得到客户ID
 			dbde.deleteTable("ConsumerInfo", cid); // 将该对象删除
@@ -436,10 +422,9 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/consumermanage.jsp");
-			rd.forward(request, response); // 页面跳转
+			
+			
+			request.getRequestDispatcher("/consumermanage.jsp").forward(request, response);	
 		} else if (action.equals("addProvider")) {
 			String pname = request.getParameter("pname").trim(); // 得到供应商名
 			String plinkman = request.getParameter("plinkman").trim(); // 得到联系人
@@ -453,12 +438,7 @@ public class ManageServlet extends HttpServlet {
 			if (premark.equals("")) {
 				premark = "暂无";
 			}
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//plinkman = new String(plinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//paddress = new String(paddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ptel = new String(ptel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//pemail = new String(pemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//premark = new String(premark.getBytes(), "ISO-8859-1"); // 将备注转码
+		
 			String temp = "from ProviderInfo as pi where pi.pname='" + pname
 					+ "'";
 			List plist = db.getInfo(temp);
@@ -479,9 +459,9 @@ public class ManageServlet extends HttpServlet {
 				String msg = "该供应商已经存在!!!";
 				request.setAttribute("msg", msg);
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);				
 		} else if (action.equals("lookProvider")) {
 			String pid = request.getParameter("pid").trim(); // 得到供应商ID
 			String type = request.getParameter("type").trim(); // 得到查看类型
@@ -491,9 +471,9 @@ public class ManageServlet extends HttpServlet {
 			}
 			ProviderInfo pi = (ProviderInfo) db.getObject("ProviderInfo", pid);// 得到对象
 			request.setAttribute("object", pi); // 将对象放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);			
 		} else if (action.equals("modifyProvider")) {
 			String pid = request.getParameter("pid").trim(); // 得到供应商ID
 			String pname = request.getParameter("pname").trim(); // 得到供应商名
@@ -508,22 +488,16 @@ public class ManageServlet extends HttpServlet {
 			if (premark.equals("")) {
 				premark = "暂无";
 			}
-			//pname = new String(pname.getBytes(), "ISO-8859-1"); // 将名字转码
-			//plinkman = new String(plinkman.getBytes(), "ISO-8859-1"); // 将联系人转码
-			//paddress = new String(paddress.getBytes(), "ISO-8859-1"); // 将地址转码
-			//ptel = new String(ptel.getBytes(), "ISO-8859-1"); // 将电话转码
-			//pemail = new String(pemail.getBytes(), "ISO-8859-1"); // 将E-mail转码
-			//premark = new String(premark.getBytes(), "ISO-8859-1"); // 将备注转码
+		
 			ProviderInfo pi = new ProviderInfo(pid, pname, plinkman, paddress,
 					ptel, pemail, premark);
 			dbup.updateTable("ProviderInfo", pi, pid); // 更新表格
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/providermanage.jsp");
-			rd.forward(request, response); // 页面跳转
+			
+
+			request.getRequestDispatcher("/providermanage.jsp").forward(request, response);	
 		} else if (action.equals("deleteProvider")) {
 			String pid = request.getParameter("pid").trim(); // 得到供应商ID
 			dbde.deleteTable("ProviderInfo", pid); // 将该对象删除
@@ -534,10 +508,10 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/providermanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/providermanage.jsp").forward(request, response);			
 		} else if (action.equals("addStock")) {
 			String stp = request.getParameter("stp").trim(); // 得到总价格
 			String pname = request.getParameter("pname").trim(); // 得到供应商
@@ -556,9 +530,9 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/stockmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/stockmanage.jsp").forward(request, response);				
 		} else if (action.equals("lookStock")) {
 			String sid = request.getParameter("sid").trim(); // 得到采购表ID
 			String type = request.getParameter("type").trim(); // 得到查看
@@ -573,14 +547,14 @@ public class ManageServlet extends HttpServlet {
 			List<StockDetail> list = (List<StockDetail>) db.getInfo(hql); // 得到对象列表
 			request.setAttribute("si", si); // 将对象放到请求中
 			request.setAttribute("list", list); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);			
 		} else if (action.equals("addStockDetail")) { // 当添加采购明细
 			String sid = request.getParameter("sid").trim(); // 得到采购单ID
 			String amount = request.getParameter("sdamount").trim(); // 得到采购数量
 			String gname = request.getParameter("gname").trim(); // 得到商品名字
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+		
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -596,10 +570,9 @@ public class ManageServlet extends HttpServlet {
 			List<StockDetail> li = (List<StockDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("si", si); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/addstockdetail.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/addstockdetail.jsp").forward(request, response);		
 		} else if (action.equals("modifyStock")) { // 当修改采购信息时
 			String sid = request.getParameter("sid").trim(); // 得到采购ID
 			String pname = request.getParameter("pname").trim(); // 得到供应商名字
@@ -616,9 +589,10 @@ public class ManageServlet extends HttpServlet {
 			List<StockDetail> li = (List<StockDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("si", si); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifystock.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/modifystock.jsp").forward(request, response);		
 		} else if (action.equals("modifyStockDetail")) { // 修改采购明细时
 			String sdid = request.getParameter("sdid").trim(); // 得到采购明细ID
 			String sdamount = request.getParameter("sdamount").trim(); // 得到修改数量
@@ -631,9 +605,10 @@ public class ManageServlet extends HttpServlet {
 			List<StockDetail> li = (List<StockDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("si", si); // 将对象放到
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifystock.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/modifystock.jsp").forward(request, response);			
 		} else if (action.equals("deleteStockDetail")) {
 			String sdid = request.getParameter("sdid").trim();
 			String sid = request.getParameter("sid").trim();
@@ -644,9 +619,9 @@ public class ManageServlet extends HttpServlet {
 			List<StockDetail> li = (List<StockDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("si", si); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifystock.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/modifystock.jsp").forward(request, response);		
 		} else if (action.equals("deleteStock")) {
 			String sid = request.getParameter("sid").trim();
 			dbde.deleteTable("StockInfo", sid);
@@ -657,9 +632,9 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/stockmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher("/stockmanage.jsp").forward(request, response);
 		} else if (action.equals("addSell")) {
 			String cname = request.getParameter("cname").trim(); // 得到客户名称
 			String etp = request.getParameter("etotalprice").trim(); // 得到总价格
@@ -674,9 +649,10 @@ public class ManageServlet extends HttpServlet {
 			userBean.setTotalPage(totalPage); // 记住当前总页数
 			List goodslist = db.getPageContent(userBean.getHql(), userBean.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/sellmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/sellmanage.jsp").forward(request, response);	
 		} else if (action.equals("lookSell")) {
 			String eid = request.getParameter("eid").trim(); // 得到销售表ID
 			String type = request.getParameter("type").trim(); // 得到查看
@@ -691,14 +667,16 @@ public class ManageServlet extends HttpServlet {
 			List<SellDetail> list = (List<SellDetail>) db.getInfo(hql); // 得到对象列表
 			request.setAttribute("ei", ei); // 将对象放到请求中
 			request.setAttribute("list", list); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);				
 		} else if (action.equals("addSellDetail")) {
 			String eid = request.getParameter("eid").trim(); // 得到销售单ID
 			String amount = request.getParameter("edamount").trim(); // 得到销售数量
 			String gname = request.getParameter("gname").trim(); // 得到商品名字
-//			gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
+
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -722,9 +700,9 @@ public class ManageServlet extends HttpServlet {
 				String msg = "商品数量不足,剩余量为:" + gi.getGamount(); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			request.getRequestDispatcher(url).forward(request, response);
 		} else if (action.equals("modifySell")) {
 			String eid = request.getParameter("eid").trim(); // 得到采购ID
 			String cname = request.getParameter("cname").trim(); // 得到供应商名字
@@ -743,9 +721,11 @@ public class ManageServlet extends HttpServlet {
 			List<SellDetail> li = (List<SellDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("ei", ei); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifysell.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/modifysell.jsp").forward(request, response);
+			
 		} else if (action.equals("modifySellDetail")) {
 			String edid = request.getParameter("edid").trim(); // 得到销售明细ID
 			String amount = request.getParameter("edamount").trim(); // 得到修改数量
@@ -768,9 +748,11 @@ public class ManageServlet extends HttpServlet {
 				String msg = "商品数量不足,剩余量为:" + gi.getGamount(); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+
 		} else if (action.equals("deleteSellDetail")) { // 当动作为删除销售明细时
 			String edid = request.getParameter("edid").trim(); // 得到明细ID
 			String eid = request.getParameter("eid").trim(); // 得到销售ID
@@ -781,9 +763,10 @@ public class ManageServlet extends HttpServlet {
 			List<SellDetail> li = (List<SellDetail>) db.getInfo(temp); // 得到对象列表
 			request.setAttribute("ei", ei); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/modifysell.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/modifysell.jsp").forward(request, response);
 		} else if (action.equals("deleteSell")) { // 当动作为删除销售时
 			String eid = request.getParameter("eid").trim(); // 得到销售ID
 			dbde.deleteTable("SellInfo", eid);
@@ -793,17 +776,16 @@ public class ManageServlet extends HttpServlet {
 			userBean.setTotalPage(totalPage); // 记住当前总页数
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
-			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/sellmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+			request.setAttribute("goodslist", goodslist); // 将列表放到请求中		
+			
+			
+			
+			request.getRequestDispatcher("/sellmanage.jsp").forward(request, response);
 		} else if (action.equals("changepwd")) { // 修改密码
 			String aname = request.getParameter("aname").trim();
 			String apwd = request.getParameter("apwd").trim();
 			String fpwd = request.getParameter("fpwd").trim();
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 将用户名转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 将密码转码
-			//fpwd = new String(fpwd.getBytes(), "ISO-8859-1"); // 将新密码转码
+		
 			String hql = "from AdminInfo as p " + // hql语句
 					"where p.aname='" + aname + "' and p.apwd='" + apwd + "'";
 			String msg = ""; // 记录提示信息
@@ -817,21 +799,19 @@ public class ManageServlet extends HttpServlet {
 				msg = "对不起,用户名或密码错误!!!";
 			}
 			request.setAttribute("msg", msg); // 将错误信息添加到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/info.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/info.jsp").forward(request, response);			
 		} else if (action.equals("addAdmin")) {
 			String aname = request.getParameter("aname").trim(); // 得到管理员名称
 			String apwd = request.getParameter("apwd").trim(); // 得到密码
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 转码
+		
 			String hql = "from AdminInfo as ai where ai.aname='" + aname + "'"; // 搜索管理员
 			List list = db.getInfo(hql); // 得到列表
 			String url = ""; // 用来存放跳转地址
 			if (list.isEmpty()) { // 当管理员不存在时
 				String aid = db.getId("AdminInfo", "aid"); // 得到管理员ID
-				///AdminInfo ai = new AdminInfo(aid, aname, apwd, new String("普通"
-						//.getBytes(), "ISO-8859-1"));
 				
 				AdminInfo ai = new AdminInfo(aid, aname, apwd, "普通");
 				dbin.insertTable("AdminInfo", ai); // 添加对象
@@ -847,14 +827,15 @@ public class ManageServlet extends HttpServlet {
 				request.setAttribute("msg", msg); // 将信息放入请求中
 				url = "/info.jsp"; // 设置跳转地址
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+			
 		} else if (action.equals("deleteAdmin")) { // 当动作为删除管理员时
 			String aid = request.getParameter("aid").trim();
 			AdminInfo ai = (AdminInfo) db.getObject("AdminInfo", aid);
-			//String alevel = new String(ai.getAlevel().getBytes("ISO-8859-1"),
-			//		"gbk");
+		
 			String alevel = ai.getAlevel();
 			String url = "/adminmanage.jsp";
 			if (alevel.equals("普通")) {
@@ -871,15 +852,14 @@ public class ManageServlet extends HttpServlet {
 				request.setAttribute("msg", msg);
 				url = "/info.jsp";
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
 		} else if (action.equals("resetApwd")) {
 			String aname = request.getParameter("aname").trim(); // 得到管理员名称
 			String apwd = request.getParameter("apwd").trim(); // 得到新密码
-			//aname = new String(aname.getBytes(), "ISO-8859-1"); // 转码
-			//apwd = new String(apwd.getBytes(), "ISO-8859-1"); // 转码
-
+			
 			String hql = "from AdminInfo where aname='" + aname + "'";
 			AdminInfo ai = ((List<AdminInfo>) db.getInfo(hql)).get(0);
 			ai.setApwd(apwd);
@@ -887,9 +867,10 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher("/adminmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/adminmanage.jsp").forward(request, response);			
 		} else if (action.equals("addConsumerBack")) {
 			String eid = request.getParameter("eid").trim(); // 得到销售表ID
 			String cbid = db.getId("ConsumerBack", "cbid"); // 得到要添加的ID
@@ -903,10 +884,11 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/consumerbackmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/consumerbackmanage.jsp").forward(request, response);
+			
 		} else if (action.equals("addProviderBack")) {
 			String sid = request.getParameter("sid").trim(); // 得到采购表ID
 			String pbid = db.getId("ProviderBack", "pbid"); // 得到要添加的ID
@@ -920,10 +902,10 @@ public class ManageServlet extends HttpServlet {
 			List goodslist = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", goodslist); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/providerbackmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/providerbackmanage.jsp").forward(request, response);
 		} else if (action.equals("lookConsumerBack")) {
 			String cbid = request.getParameter("cbid").trim(); // 得到退货表ID
 			String type = request.getParameter("type").trim(); // 得到查看类型
@@ -940,9 +922,11 @@ public class ManageServlet extends HttpServlet {
 					.getInfo(hql); // 得到对象列表
 			request.setAttribute("cb", cb); // 将对象放到请求中
 			request.setAttribute("list", list); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+			
 		} else if (action.equals("lookProviderBack")) {
 			String pbid = request.getParameter("pbid").trim(); // 得到采购表ID
 			String type = request.getParameter("type").trim(); // 得到查看类型
@@ -959,14 +943,15 @@ public class ManageServlet extends HttpServlet {
 					.getInfo(hql);
 			request.setAttribute("pb", pb);
 			request.setAttribute("list", list);
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+			
 		} else if (action.equals("addConsumerBackDetail")) {
 			String cbid = request.getParameter("cbid").trim(); // 得到退货单ID
 			String gname = request.getParameter("gname").trim(); // 得到退货商品名
 			String amount = request.getParameter("cbdamount").trim(); // 得到退货数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -995,14 +980,15 @@ public class ManageServlet extends HttpServlet {
 				String msg = "退货数量超出销售数量,销售量为:" + sd.getEdamount(); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+			
 		} else if (action.equals("addProviderBackDetail")) {
 			String pbid = request.getParameter("pbid").trim(); // 得到退货单ID
 			String gname = request.getParameter("gname").trim(); // 得到退货商品名
 			String amount = request.getParameter("pbdamount").trim(); // 得到退货数量
-			//gname = new String(gname.getBytes(), "ISO-8859-1"); // 将商品名字转码
 			String hql = "from GoodsInfo as gi where gi.gname='" + gname + "'"; // 搜索商品
 			List<GoodsInfo> list = (List<GoodsInfo>) db.getInfo(hql); // 得到商品列表
 			GoodsInfo gi = list.get(0); // 得到商品对象
@@ -1031,9 +1017,11 @@ public class ManageServlet extends HttpServlet {
 				String msg = "退货数量超出采购数量,采购量为:" + sd.getSdamount(); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
 		} else if (action.equals("modifyConsumerBackDetail")) {
 			String cbdid = request.getParameter("cbdid").trim(); // 得到退货明细ID
 			String amount = request.getParameter("cbdamount").trim(); // 得到修改后数量
@@ -1061,9 +1049,12 @@ public class ManageServlet extends HttpServlet {
 						+ (sd.getEdamount() + cbd.getCbdamount()); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			
+			request.getRequestDispatcher(url).forward(request, response);
+
 		} else if (action.equals("deleteConsumerBackDetail")) {
 			String cbdid = request.getParameter("cbdid").trim();
 			String cbid = request.getParameter("cbid").trim();
@@ -1077,10 +1068,11 @@ public class ManageServlet extends HttpServlet {
 					.getInfo(cbdtemp); // 得到对象列表
 			request.setAttribute("cb", cb); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/modifyconsumerback.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			
+			request.getRequestDispatcher("/modifyconsumerback.jsp").forward(request, response);
 		} else if (action.equals("modifyProviderBackDetail")) {
 			String pbdid = request.getParameter("pbdid").trim(); // 得到退货明细ID
 			String amount = request.getParameter("pbdamount").trim(); // 得到修改后数量
@@ -1108,9 +1100,11 @@ public class ManageServlet extends HttpServlet {
 						+ (sd.getSdamount() + pbd.getPbdamount()); // 提示信息
 				request.setAttribute("msg", msg); // 将信息放入请求中
 			}
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response); // 页面跳转
+
+					
+			
+			request.getRequestDispatcher(url).forward(request, response);			
+			
 		} else if (action.equals("deleteProviderBackDetail")) {
 			String pbdid = request.getParameter("pbdid").trim(); // 得到要删除的明细ID
 			String pbid = request.getParameter("pbid").trim(); // 得到采购ID
@@ -1124,10 +1118,12 @@ public class ManageServlet extends HttpServlet {
 					.getInfo(pbdtemp); // 得到对象列表
 			request.setAttribute("pb", pb); // 将对象放到请求中
 			request.setAttribute("list", li); // 将对象列表放入请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/modifyproviderback.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			
+			request.getRequestDispatcher("/modifyproviderback.jsp").forward(request, response);
+
 		} else if (action.equals("deleteProviderBack")) {
 			String pbid = request.getParameter("pbid").trim(); // 得到要删除的退货表ID
 			dbde.deleteTable("ProviderBack", pbid);
@@ -1138,10 +1134,10 @@ public class ManageServlet extends HttpServlet {
 			List list = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", list); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/providerbackmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+			
+			
+			request.getRequestDispatcher("/providerbackmanage.jsp").forward(request, response);						
 		} else if (action.equals("deleteConsumerBack")) {
 			String cbid = request.getParameter("cbid").trim(); // 得到要删除的退货表ID
 			dbde.deleteTable("ConsumerBack", cbid);
@@ -1152,10 +1148,9 @@ public class ManageServlet extends HttpServlet {
 			List list = db.getPageContent(userBean.getHql(), userBean
 					.getNowPage(), userBean.getSpan()); // 得到列表
 			request.setAttribute("goodslist", list); // 将列表放到请求中
-			ServletContext sc = getServletContext(); // 得到上下文
-			RequestDispatcher rd = sc
-					.getRequestDispatcher("/consumerbackmanage.jsp");
-			rd.forward(request, response); // 页面跳转
+
+				
+			request.getRequestDispatcher("/consumerbackmanage.jsp").forward(request, response);	
 		}
 	}
 }
