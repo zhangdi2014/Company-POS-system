@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 public class GoodsClassInfo {
-	private String gcid;
-	private String gcname;
+	private String gcid;              //商品类别id
+	private String gcname;            //商品类别名称
 	
 	public GoodsClassInfo(){}
 	public GoodsClassInfo(String gcid,String gcname){
@@ -18,7 +18,6 @@ public class GoodsClassInfo {
 		this.gcname = gcname;
 	}
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gcid") 
 	public String getGcid() {
 		return gcid;

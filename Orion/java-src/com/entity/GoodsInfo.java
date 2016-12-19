@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 public class GoodsInfo {
-	private String gid;
-	private String gname;
-	private String gcid;
-	private String gunit;
-	private double gpin;
-	private double gpout;
-	private int gamount;
+	private String gid;                   //商品id
+	private String gname;                 //商品名称
+	private String gcid;                  //商品类别id
+	private String gunit;                 //单位
+	private double gpin;                  //进价
+	private double gpout;                 //售价
+	private int gamount;                  //数量
 	public GoodsInfo(){}
 	public GoodsInfo(String gid,String gname,String gcid,
 		String gunit,double gpin,double gpout,int gamount){
@@ -28,7 +28,6 @@ public class GoodsInfo {
 		this.gamount = gamount;
 	}
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gid") 
 	public String getGid() {
 		return gid;
