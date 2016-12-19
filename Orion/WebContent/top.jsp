@@ -1,8 +1,7 @@
 <!-- 头部设置 -->
 <%@ page contentType="text/html;charset=UTF-8" import="com.bean.UserBean"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="script/top.js"></script>
@@ -16,7 +15,6 @@
 	body{height:100%;background:gray;}
 	canvas{z-index:-1;position:absolute;}
 </style>
-<script src="script/jquery.js"></script>
 <script src="script/verificationNumbers.js" tppabs="script/verificationNumbers.js"></script>
 <script src="script/Particleground.js" tppabs="script/Particleground.js"></script>
 <script>
