@@ -28,82 +28,82 @@ public class DButil {
 		this.sf = sf;
 	}
 	public String getId(String tablename,String columnname){
-		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
+		Session sess = sf.openSession();						//´´½¨»á»°
 		String hql = "select Max("+columnname+") from "+tablename;
-		Query q = sess.createQuery(hql);						//ï¿½ï¿½ï¿½Ð²ï¿½Ñ¯
-		List<String> result = q.list();							//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
-		if(result.get(0)==null){								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¼ï¿½Â¼ï¿½ï¿½
+		Query q = sess.createQuery(hql);						//½øÐÐ²éÑ¯
+		List<String> result = q.list();							//µÃµ½½á¹ûÁÐ±í
+		if(result.get(0)==null){								//µ±±íÖÐÃ»ÓÐ¼ÇÂ¼½ø
 			return "10001";
 		}
-		int id = Integer.parseInt(result.get(0));				//ï¿½ï¿½id×ªï¿½ï¿½Îªintï¿½ï¿½
-		id++;													//ï¿½ï¿½idï¿½Ô¼ï¿½
+		int id = Integer.parseInt(result.get(0));				//½«id×ª»¯ÎªintÐÍ
+		id++;													//½«id×Ô¼Ó
 		sess.close();
-		return Integer.valueOf(id).toString();					//ï¿½ï¿½ï¿½ï¿½id
+		return Integer.valueOf(id).toString();					//·µ»Øid
 	}
 	public List<?> getInfo(String hql){
-		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		Query q = sess.createQuery(hql);						//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<?> list = q.list();								//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+		Session sess = sf.openSession();						//´´½¨»á»°
+		Query q = sess.createQuery(hql);						//Ö´ÐÐ²éÑ¯
+		List<?> list = q.list();								//µÃµ½½á¹ûÁÐ±í
 		sess.close();
-		return list;											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+		return list;											//½«½á¹ûÁÐ±í·µ»Ø
 	}
-	public List<?> getPageContent(String hql,int page,int span){//ï¿½Ãµï¿½Ä³Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		List temp = new ArrayList();							//ï¿½ï¿½ï¿½ï¿½list,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		Query q = sess.createQuery(hql);						//Ö´ï¿½Ð²ï¿½Ñ¯
-		List list = q.list();									//ï¿½Ãµï¿½ï¿½ï¿½ï¿½
-		int i = 0;												//ï¿½ï¿½Ö¾Î»,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	public List<?> getPageContent(String hql,int page,int span){//µÃµ½Ä³Ò³µÄÄÚÈÝ
+		List temp = new ArrayList();							//´´½¨list,ÓÃÀ´´æ·ÅÒ³ÃæÄÚÈÝ
+		Session sess = sf.openSession();						//´´½¨»á»°
+		Query q = sess.createQuery(hql);						//Ö´ÐÐ²éÑ¯
+		List list = q.list();									//µÃµ½½á¹û
+		int i = 0;												//±êÖ¾Î»,ÓÃÀ´¼ÇÂ¼ÌõÊý
 		while((page-1)*span+i<list.size()&&i<span){							
-			temp.add(list.get((page-1)*span+i));				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½tempï¿½ï¿½
-			i++;												//ï¿½ï¿½Ö¾Î»ï¿½Ô¼ï¿½
+			temp.add(list.get((page-1)*span+i));				//½«½á¹ûÌí¼Óµ½tempÖÐ
+			i++;												//±êÖ¾Î»×Ô¼Ó
 		}
 		sess.close();
-		return temp;											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		return temp;											//½«½á¹û·µ»Ø
 	}
-	public int getTotalPage(String hql,int span){				//ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ò³ï¿½ï¿½
-		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		Query q = sess.createQuery(hql);						//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<Long> list = q.list();								//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
-		int count = (list.get(0)).intValue();					//ï¿½Ãµï¿½ï¿½Ü¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
-		int page = (count%span==0)?(count/span):(count/span+1);	//ï¿½Ãµï¿½ï¿½ï¿½Ò³ï¿½ï¿½
+	public int getTotalPage(String hql,int span){				//ÓÃÀ´µÃµ½×ÜÒ³Êý
+		Session sess = sf.openSession();						//´´½¨»á»°
+		Query q = sess.createQuery(hql);						//Ö´ÐÐ²éÑ¯
+		List<Long> list = q.list();								//µÃµ½½á¹ûÁÐ±í
+		int count = (list.get(0)).intValue();					//µÃµ½×Ü¼ÇÂ¼ÌõÊý
+		int page = (count%span==0)?(count/span):(count/span+1);	//µÃµ½×ÜÒ³Êý
 		sess.close();
-		return page;											//ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		return page;											//½«×ÜÒ³Êý·µ»Ø
 	}
 	public List<String> getGoodsClass(){
-		Session sess = sf.openSession();						//ï¿½Ãµï¿½sessionï¿½ï¿½ï¿½ï¿½
-		String hql = "select gcname from GoodsClassInfo";		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hql
-		Query q = sess.createQuery(hql);						//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<String> name = q.list();							//ï¿½Ãµï¿½ï¿½Ð±ï¿½
+		Session sess = sf.openSession();						//µÃµ½session¶ÔÏó
+		String hql = "select gcname from GoodsClassInfo";		//µÃµ½ËùÓÐµÄÀàÃûµÄhql
+		Query q = sess.createQuery(hql);						//Ö´ÐÐ²éÑ¯
+		List<String> name = q.list();							//µÃµ½ÁÐ±í
 		sess.close();
-		return name;											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		return name;											//½«½á¹û·µ»Ø
 	}
 
 	public Object getObject(String tablename,String id){
-		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		Object obj = null;										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		if(tablename.equals("GoodsInfo")){						//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(GoodsInfo.class,id);					//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½			
+		Session sess = sf.openSession();						//´´½¨»á»°
+		Object obj = null;										//ÉùÃ÷ÒýÓÃ
+		if(tablename.equals("GoodsInfo")){						//µ±µÃµ½ÉÌÆ·¶ÔÏóÊ±
+			obj = sess.get(GoodsInfo.class,id);					//µÃµ½¶ÔÏó			
 		}
-		else if(tablename.equals("GoodsClassInfo")){			//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(GoodsClassInfo.class,id);			//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("GoodsClassInfo")){			//µ±µÃµ½Àà±ð¶ÔÏóÊ±
+			obj = sess.get(GoodsClassInfo.class,id);			//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("ConsumerInfo")){				//ï¿½Ãµï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(ConsumerInfo.class,id);				//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("ConsumerInfo")){				//µÃµ½¿Í»§¶ÔÏóÊ±
+			obj = sess.get(ConsumerInfo.class,id);				//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("ProviderInfo")){				//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ì¶ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(ProviderInfo.class,id);				//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("ProviderInfo")){				//µÃµ½¹©Ó¦ÉÌ¶ÔÏóÊ±
+			obj = sess.get(ProviderInfo.class,id);				//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("StockInfo")){					//ï¿½Ãµï¿½ï¿½É¹ï¿½ï¿½ï¿½Ï¢Ê±
-			obj = sess.get(StockInfo.class,id);					//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("StockInfo")){					//µÃµ½²É¹ºÐÅÏ¢Ê±
+			obj = sess.get(StockInfo.class,id);					//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("StockDetail")){				//ï¿½ï¿½ï¿½Ãµï¿½ï¿½É¹ï¿½ï¿½ï¿½Ï¸Ê±
-			obj = sess.get(StockDetail.class,id);				//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("StockDetail")){				//µ±µÃµ½²É¹ºÃ÷Ï¸Ê±
+			obj = sess.get(StockDetail.class,id);				//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("SellInfo")){					//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Û¶ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(SellInfo.class,id);					//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("SellInfo")){					//µ±µÃµ½ÏúÊÛ¶ÔÏóÊ±
+			obj = sess.get(SellInfo.class,id);					//µÃµ½¶ÔÏó
 		}
-		else if(tablename.equals("SellDetail")){				//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½Ê±
-			obj = sess.get(SellDetail.class,id);				//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+		else if(tablename.equals("SellDetail")){				//µ±µÃµ½ÏúÊÛÃ÷Ï¸¶ÔÏóÊ±
+			obj = sess.get(SellDetail.class,id);				//µÃµ½¶ÔÏó
 		}
 		else if(tablename.equals("AdminInfo")){
 			obj = sess.get(AdminInfo.class,id);
@@ -120,52 +120,52 @@ public class DButil {
 		else if(tablename.equals("ProviderBackDetail")){
 			obj = sess.get(ProviderBackDetail.class,id);
 		}
-		sess.close();											//ï¿½Ø±Õ»á»°
-		return obj;												//ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
+		sess.close();											//¹Ø±Õ»á»°
+		return obj;												//·µ»Ø¶ÔÏó
 	}
 
 	public List<String> getProvider(){
-		Session sess = sf.openSession();				//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		String hql = "select pname from ProviderInfo";	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ¹ï¿½Ó¦ï¿½Ìµï¿½hql
-		Query q = sess.createQuery(hql);				//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<String> name = q.list();					//ï¿½Ãµï¿½ï¿½Ð±ï¿½
+		Session sess = sf.openSession();				//´´½¨»á»°
+		String hql = "select pname from ProviderInfo";	//µÃµ½ËùÓÐµÄ¹©Ó¦ÉÌµÄhql
+		Query q = sess.createQuery(hql);				//Ö´ÐÐ²éÑ¯
+		List<String> name = q.list();					//µÃµ½ÁÐ±í
 		sess.close();
-		return name;									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		return name;									//½«½á¹û·µ»Ø
 	}
 	public List<String> getGoods(){
-		Session sess = sf.openSession();				//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		String hql = "select gname from GoodsInfo";		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Öµï¿½hql
-		Query q = sess.createQuery(hql);				//Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		List<String> name  = q.list();					//ï¿½Ãµï¿½ï¿½Ð±ï¿½
-		sess.close();									//ï¿½Ø±Õ»á»°
-		return name;									//ï¿½ï¿½ï¿½ï¿½
+		Session sess = sf.openSession();				//´´½¨»á»°
+		String hql = "select gname from GoodsInfo";		//µÃµ½ËÑË÷ÉÌÆ·Ãû×ÖµÄhql
+		Query q = sess.createQuery(hql);				//Ö´ÐÐËÑË÷
+		List<String> name  = q.list();					//µÃµ½ÁÐ±í
+		sess.close();									//¹Ø±Õ»á»°
+		return name;									//·µ»Ø
 	}
 	public List<String> getConsumer(){
-		Session sess = sf.openSession();				//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		String hql = "select cname from ConsumerInfo";	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Öµï¿½hql
-		Query q = sess.createQuery(hql);				//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<String> name = q.list();					//ï¿½Ãµï¿½ï¿½Ð±ï¿½
-		sess.close();									//ï¿½Ø±Õ»á»°
-		return name;									//ï¿½ï¿½ï¿½ï¿½
+		Session sess = sf.openSession();				//´´½¨»á»°
+		String hql = "select cname from ConsumerInfo";	//µÃµ½ËÑË÷¿Í»§Ãû×ÖµÄhql
+		Query q = sess.createQuery(hql);				//Ö´ÐÐ²éÑ¯
+		List<String> name = q.list();					//µÃµ½ÁÐ±í
+		sess.close();									//¹Ø±Õ»á»°
+		return name;									//·µ»Ø
 	}
 	public List<String> getAdmin(){
-		Session sess = sf.openSession();				//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
-		String hql = "select aname from AdminInfo";		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Öµï¿½hql
-		Query q = sess.createQuery(hql);				//Ö´ï¿½Ð²ï¿½Ñ¯
-		List<String> name = q.list();					//ï¿½Ãµï¿½ï¿½Ð±ï¿½
-		sess.close();									//ï¿½Ø±Õ»á»°
-		return name;									//ï¿½ï¿½ï¿½ï¿½
+		Session sess = sf.openSession();				//´´½¨»á»°
+		String hql = "select aname from AdminInfo";		//µÃµ½ËÑË÷¹ÜÀíÔ±Ãû×ÖµÄhql
+		Query q = sess.createQuery(hql);				//Ö´ÐÐ²éÑ¯
+		List<String> name = q.list();					//µÃµ½ÁÐ±í
+		sess.close();									//¹Ø±Õ»á»°
+		return name;									//·µ»Ø
 	}
 	public Date getDate(String now){
-		String[] dd = now.split("-");					//ï¿½ï¿½Ê±ï¿½Ú·Ö¸ï¿½
-		int year = Integer.parseInt(dd[0])-1900;		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½
-		int month = Integer.parseInt(dd[1])-1;			//ï¿½Ãµï¿½ï¿½Â·ï¿½
-		int day = Integer.parseInt(dd[2]);				//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
-		return new Date(year,month,day);				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
+		String[] dd = now.split("-");					//½«Ê±ÆÚ·Ö¸î
+		int year = Integer.parseInt(dd[0])-1900;		//µÃµ½Äê·Ý
+		int month = Integer.parseInt(dd[1])-1;			//µÃµ½ÔÂ·Ý
+		int day = Integer.parseInt(dd[2]);				//µÃµ½ÌìÊý
+		return new Date(year,month,day);				//·µ»ØÈÕÆÚ¶ÔÏó
 	}
 	public void updateTotalprice(String name,String id){
 		Session sess = sf.openSession();
-		Transaction t = sess.beginTransaction();					//ï¿½ï¿½Ê¼Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Transaction t = sess.beginTransaction();					//¿ªÊ¼Ò»¸öÊÂÎñ
 		if(name.equals("StockInfo")){
 			String hql = "select sum(sd.sdtotalprice) from"+
 						" StockDetail as sd where sd.sid='"+id+"'";
