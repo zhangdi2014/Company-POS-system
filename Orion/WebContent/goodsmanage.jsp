@@ -33,50 +33,38 @@
       }
     </script>
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
   	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td><font color="#FFFFFF" size="5">商品资料管理</font></td></tr>
 	</table>
-	<table>
-	<form action="ManageServlet" method="post" id="smf">
-	  <tr>
-	    <td>
-		<table height="42" style="background:url(img/goods_sear.jpg) no-repeat">
+	<hr size="1" width="100%" color="black"/>
+	  <form action="ManageServlet" method="post" id="smf">
+	    <table bgcolor="#206AB3" style="border-radius: 5px">
 		  <tr>
-		    <td>
-		      &nbsp;<img src="img/log.gif" border="0" style="cursor:hand" onclick="document.all.key.focus()"/>
-		    </td>
-		    <td>
-		      <input name="key" id="key" value="请输入要搜索的商品名称" style="border:0"
-		      		 size="28"	onfocus="document.all.key.value=''"/>		    
-		    </td>
-		    <td width="86" align="right">
-		    <img src="img/sear.jpg" id="mg" border="0"
-		      style="cursor:hand"
-		      onclick="JavaScript:check()"
-		      onmousedown="document.all.mg.src='img/sear1.jpg'"
-		      onmouseup="document.all.mg.src='img/sear.jpg'"/>
-		    </td>
-		    <td width="80" align="center">
- 		      <input type="radio" name="myradio" value="name" checked="true"><font size="2" color="white">按名称</font>
-	     	</td>
-	     	<td width="80">
-	     	  <input type="radio" name="myradio" value="class"><font size="2" color="white">按类别</font>
-		    </td>
-	    	<td width="80">
-	    	  <a href="addgoods.jsp" target="mainFrame"><font size="2" color="white">添加商品</font></a>
-	    	</td> 
+			<td>
+			  &nbsp;<img src="img/log.gif" border="0" style="cursor:hand" onclick="document.all.key.focus()"/>
+			</td>
+			<td>
+			  <input name="key" id="key" value="请输入要搜索的商品名称" style="border:0" size="28"	onfocus="document.all.key.value=''"/>		    
+			</td>
+			<td width="85" align="right">
+			  <img src="img/sear.jpg" id="mg" border="0" style="cursor:hand"onclick="JavaScript:check()"/>
+			</td>
+			<td width="80" align="center">
+		 	  <input type="radio" name="myradio" value="name" checked="true"><font size="2" color="white">按名称</font>
+			</td>
+			<td width="80">
+			  <input type="radio" name="myradio" value="class"><font size="2" color="white">按类别</font>
+			</td>
+			<td width="80">
+			  <a href="addgoods.jsp" target="mainFrame"><font size="2" color="white">添加商品</font></a>
+			</td> 
 		  </tr>
 		</table>
-	    </td>	    
-		<td>
-	      <input type="hidden" name="action" value="search" />
-	      <input type="hidden" name="type" value="goodsinfo"/>
-	    </td>	   
-	  </tr>
-	</form>
-	</table>
+		<input type="hidden" name="action" value="search" />
+		<input type="hidden" name="type" value="goodsinfo"/>
+	  </form>
 	<hr size="1" width="100%" color="black"/>
 	<% 
 		if(goodslist.isEmpty()){
@@ -162,7 +150,7 @@
 	      <input type="hidden" name="pagename" value="/goodsmanage.jsp"/>	    
 	    </td>
 	    <td width="10">
-	      <img src="img/go.gif" border="0" style="cursor:hand" onclick="JavaScript:checkPage(<%= userBean.getTotalPage() %>)">
+	      <img src="img/go.gif" border="0" style="cursor:hand" onclick="JavaScript:checkPage(<%= userBean.getTotalPage() %>)"/>
 	    </td>
 	  </tr>
 	</form>

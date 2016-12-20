@@ -1,6 +1,5 @@
 <!-- 登录页的设置 -->
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -56,15 +55,12 @@
 			    else if(inputCode == codeToUp ){
 	
 			      document.getElementById("J_codetext").value="";
-			      document.getElementById("J_codetext").setAttribute("placeholder","验证码正确");
+			      document.getElementById("J_codetext").setAttribute("placeholder","");
 			      createCode();
 			      document.all.mf.submit();
 			    }
-
-			
-			}
-		
-		  //回车时，默认是登陆
+}
+		//回车时，默认是登陆
 	 function on_return(){
 		 if(window.event.keyCode == 13){
 		  if (document.all('lg')!=null){
@@ -73,17 +69,7 @@
 		 }
 		 }        
 </script>
-
-
-
-
-
-
-
-
-
-
-	</head>
+</head>
 	<body onkeydown="on_return()">
 		<dl class="admin_login">
 		 <dt>
@@ -92,7 +78,7 @@
 		 </dt>
 		 <form action="ManageServlet" method="post" id="mf">
 			 <dd class="user_icon">
-			  <input type="text" id="uname" name="uname" placeholder="账号" class="login_txtbx" value="zrk"/>
+			  <input type="text" id="uname" name="uname" placeholder="账号" class="login_txtbx" value="cc"/>
 			 </dd>
 			 <dd class="pwd_icon">
 			  <input type="password" id="upwd" name="upwd" placeholder="密码" class="login_txtbx" value="123"/>
@@ -106,14 +92,7 @@
 			 </dd>
 			 <dd>
 			  <input type="button" value="立即登录"  id="lg" onclick="javascript:return dl(uname.value,upwd.value)" style="width:100%;height:42px;border:none;font-size:16px;background:#048f74;color:#f8f8f8;"/>
-
-
-
-
-
-
-
-			 </dd>
+             </dd>
 			 <input type="hidden" name="action" value="login" />
 		 </form>
 		

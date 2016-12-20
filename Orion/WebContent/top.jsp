@@ -1,7 +1,8 @@
 <!-- 头部设置 -->
 <%@ page contentType="text/html;charset=UTF-8" import="com.bean.UserBean"%>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="script/top.js"></script>
@@ -15,6 +16,7 @@
 	body{height:100%;background:gray;}
 	canvas{z-index:-1;position:absolute;}
 </style>
+<script src="script/jquery.js"></script>
 <script src="script/verificationNumbers.js" tppabs="script/verificationNumbers.js"></script>
 <script src="script/Particleground.js" tppabs="script/Particleground.js"></script>
 <script>
@@ -42,7 +44,7 @@
         <li id="li-4">系统管理<span></span></li>
       </ul>
       <!--隐藏盒子-->
-      <div id="box-1" class="hidden-box hidden-loc-box01" >
+      <div id="box-1" class="hidden-box hidden-loc-box01" style="width:45%">
         <ul>
           <li><a href="ManageServlet?action=search&key=&type=goodsinfo" target="mainFrame" class="ej">商品资料</a></li>
           <li><a href="ManageServlet?action=search&key=&type=goodsclassinfo" target="mainFrame" class="ej">商品类别</a></li>
@@ -50,7 +52,7 @@
           <li><a href="ManageServlet?action=search&key=&type=providerinfo" target="mainFrame" class="ej">供应商资料</a></li>
         </ul>
       </div>
-      <div id="box-2" class="hidden-box hidden-loc-box02">
+      <div id="box-2" class="hidden-box hidden-loc-box02" style="width:45%">
         <ul>
           <li><a href="ManageServlet?action=search&key=&type=stockinfo" target="mainFrame" class="ej">采购信息</a></li>
           <li><a href="ManageServlet?action=search&key=&type=providerback" target="mainFrame" class="ej">采购退货</a></li>
@@ -58,14 +60,15 @@
           <li><a href="ManageServlet?action=search&key=&type=consumerback" target="mainFrame" class="ej">销售退货</a></li>
         </ul>
       </div>
-      <div id="box-3" class="hidden-box hidden-loc-box03" style="width:150px">
+      <div id="box-3" class="hidden-box hidden-loc-box03" style="width:120px">
         <ul>
           <li><a href="statistic.jsp" target="mainFrame" class="ej">库存统计</a></li>
         </ul>
       </div>
-      <div id="box-4" class="hidden-box hidden-loc-box04" style="width:150px">
+      <div id="box-4" class="hidden-box hidden-loc-box04" style="width:180px">
         <ul>
           <li><a href="ManageServlet?action=search&key=&type=admininfo" target="mainFrame" class="ej">系统维护</a></li>
+          <li><a href="ManageServlet?action=logout" target="_parent" class="ej">注销</a></li>
         </ul>
       </div>
     </div>

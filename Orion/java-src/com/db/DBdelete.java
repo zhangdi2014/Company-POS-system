@@ -1,8 +1,6 @@
 package com.db;
-
 import java.util.*;
 import org.springframework.orm.hibernate3.*;
-
 import com.entity.AdminInfo;
 import com.entity.ConsumerBack;
 import com.entity.ConsumerBackDetail;
@@ -16,9 +14,7 @@ import com.entity.SellDetail;
 import com.entity.SellInfo;
 import com.entity.StockDetail;
 import com.entity.StockInfo;
-
 import org.hibernate.*;
-
 public class DBdelete{	
 	private SessionFactory sf;
 	private DButil db;
@@ -42,26 +38,22 @@ public class DBdelete{
 			if(gi!=null){
 				sess.delete(gi);									//将该对象删除
 			}
-		}
-		else if(tablename.equals("GoodsClassInfo")){				//删除类别对象时
+		}else if(tablename.equals("GoodsClassInfo")){				//删除类别对象时
 			GoodsClassInfo gci = (GoodsClassInfo)sess.get(GoodsClassInfo.class,id);
 			if(gci!=null){
 				sess.delete(gci);									//删除
 			}
-		}
-		else if(tablename.equals("ConsumerInfo")){					//删除客户对象时
+		}else if(tablename.equals("ConsumerInfo")){					//删除客户对象时
 			ConsumerInfo ci = (ConsumerInfo)sess.get(ConsumerInfo.class,id);
 			if(ci!=null){
 				sess.delete(ci);									//删除对象
 			}
-		}
-		else if(tablename.equals("ProviderInfo")){					//删除供应商对象时
+		}else if(tablename.equals("ProviderInfo")){					//删除供应商对象时
 			ProviderInfo pi = (ProviderInfo)sess.get(ProviderInfo.class,id);
 			if(pi!=null){											//当对象不为空
 				sess.delete(pi);									//删除对象
 			}
-		}
-		else if(tablename.equals("StockDetail")){
+		}else if(tablename.equals("StockDetail")){
 			StockDetail sd = (StockDetail)sess.get(StockDetail.class,id);		//得到StockDetail对象
 			if(sd!=null){
 				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());//得到GoodsInfo对象
@@ -72,8 +64,7 @@ public class DBdelete{
 				db.updateTotalprice("StockInfo",sd.getSid());			//更新父表总价
 				t = sess.beginTransaction();
 			}
-		}
-		else if(tablename.equals("StockInfo")){						//当删除对象为stockinfo时
+		}else if(tablename.equals("StockInfo")){						//当删除对象为stockinfo时
 			StockInfo si = (StockInfo)sess.get(StockInfo.class,id);	//得到对象
 			if(si!=null){											//当对象不为空时
 				String hql = "from StockDetail as sd where sd.sid='"+id+"'";		//得到明细列表的hql
@@ -85,8 +76,7 @@ public class DBdelete{
 				}				
 				sess.delete(si);													//删除对象
 			}
-		}
-		else if(tablename.equals("SellDetail")){									//当删除销售明细对象时
+		}else if(tablename.equals("SellDetail")){									//当删除销售明细对象时
 			SellDetail ed = (SellDetail)sess.get(SellDetail.class,id);				//得到明细对象
 			if(ed!=null){															//当对象不为空时
 				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());	//得到商品对象
@@ -97,8 +87,7 @@ public class DBdelete{
 				db.updateTotalprice("SellInfo",ed.getEid());							//更新父表总价
 				t = sess.beginTransaction();
 			}
-		}
-		else if(tablename.equals("SellInfo")){
+		}else if(tablename.equals("SellInfo")){
 			SellInfo ei = (SellInfo)sess.get(SellInfo.class,id);					//得到要删除的对象
 			if(ei!=null){															//当对象存在
 				String hql = "from SellDetail as ed where ed.eid='"+id+"'";			//搜索对应的明细
@@ -110,14 +99,12 @@ public class DBdelete{
 				}
 				sess.delete(ei);													//删除对象
 			}			
-		}
-		else if(tablename.equals("AdminInfo")){										//删除管理员时
+		}else if(tablename.equals("AdminInfo")){										//删除管理员时
 			AdminInfo ai = (AdminInfo)sess.get(AdminInfo.class,id);					//得到管理员对象
 			if(ai!=null){															//当对象不为空
 				sess.delete(ai);													//删除对象
 			}
-		}
-		else if(tablename.equals("ConsumerBackDetail")){										//删除客户退货明细
+		}else if(tablename.equals("ConsumerBackDetail")){										//删除客户退货明细
 			ConsumerBackDetail cbd = (ConsumerBackDetail)sess.get(ConsumerBackDetail.class,id);	//得到对象
 			if(cbd!=null){																		//当对象不为空
 				ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,cbd.getCbid());		//得到客户对象
@@ -136,8 +123,7 @@ public class DBdelete{
 				db.updateTotalprice("SellInfo",sd.getEid());										//更新父表总价格
 				t = sess.beginTransaction();
 			}			
-		}
-		else if(tablename.equals("ProviderBackDetail")){
+		}else if(tablename.equals("ProviderBackDetail")){
 			ProviderBackDetail pbd = (ProviderBackDetail)sess.get(ProviderBackDetail.class,id);	//得到对象
 			if(pbd!=null){																		//当对象不为空
 				ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,pbd.getPbid());		//得到供应商对象
@@ -156,8 +142,7 @@ public class DBdelete{
 				db.updateTotalprice("StockInfo",sd.getSid());										//更新父表总价格
 				t = sess.beginTransaction();
 			}
-		}
-		else if(tablename.equals("ProviderBack")){
+		}else if(tablename.equals("ProviderBack")){
 			ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,id);					//得到要删除的对象
 			if(pb!=null){
 				String pbdtemp = "from ProviderBackDetail as pbd where pbd.pbid='"+pb.getPbid()+"'";
@@ -180,8 +165,7 @@ public class DBdelete{
 				}
 				sess.delete(pb);
 			}
-		}
-		else if(tablename.equals("ConsumerBack")){
+		}else if(tablename.equals("ConsumerBack")){
 			ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,id);					//得到要删除的对象	
 			if(cb!=null){
 				String cbdtemp = "from ConsumerBackDetail as cbd where cbd.cbid='"+cb.getCbid()+"'";
