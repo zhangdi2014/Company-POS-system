@@ -74,7 +74,7 @@
       	  <% 
 			List<String> cname = db.getConsumer();
 			for(String name:cname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
+	
   	   			String flag = "";
   	   			if(name.equals(new String(ci.getCname().getBytes("ISO-8859-1"),"gbk"))){
   	   				flag = "selected";
@@ -88,9 +88,7 @@
 		</td>
 	     <td><input name="edate" id="edate" value="<%= day %>"/></td>
 		<td><%= ei.getEtotalprice() %></td>
-		<!--
-		<td><input name="eseller" id="eseller" value="<%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %>" /></td>
-		-->
+	
 		<td><input name="eseller" id="eseller" value="<%= ei.getEseller()%>" /></td>
 	  </tr>
 	</table>

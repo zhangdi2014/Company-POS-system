@@ -53,7 +53,6 @@
 			DButil db = (DButil)wac.getBean("DButil");
 			List<String> pname = db.getProvider();
 			for(String name:pname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 

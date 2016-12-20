@@ -54,13 +54,13 @@
 			      return false;
 			    }
 			    else if(inputCode == codeToUp ){
-			      //window.open(document.getElementById("J_down").getAttribute("data-link"));
+	
 			      document.getElementById("J_codetext").value="";
 			      document.getElementById("J_codetext").setAttribute("placeholder","验证码正确");
 			      createCode();
 			      document.all.mf.submit();
 			    }
-			//document.all.mf.submit();
+
 			
 			}
 		

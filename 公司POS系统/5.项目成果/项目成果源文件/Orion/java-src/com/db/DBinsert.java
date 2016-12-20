@@ -34,37 +34,37 @@ public class DBinsert{
 	public void setDb(DButil db){
 		this.db = db;
 	}
-	public void insertTable(String tablename,Object obj){		//ÓÃÀ´±£´æ¶ÔÏó
-		Session sess = sf.openSession();						//´´½¨»á»°
-		Transaction t = sess.beginTransaction();				//´´½¨Ò»¸öÊÂÎñ
-		if(tablename.equals("GoodsInfo")){						//µ±ÎªÉÌÆ·Ê±
-			GoodsInfo gi = (GoodsInfo)obj;						//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(gi);										//±£´æ¶ÔÏó
+	public void insertTable(String tablename,Object obj){		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Session sess = sf.openSession();						//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
+		Transaction t = sess.beginTransaction();				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(tablename.equals("GoodsInfo")){						//ï¿½ï¿½Îªï¿½ï¿½Æ·Ê±
+			GoodsInfo gi = (GoodsInfo)obj;						//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(gi);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("GoodsClassInfo")){			//µ±ÎªÉÌÆ·Àà±ðÊ±
-			GoodsClassInfo gci = (GoodsClassInfo)obj;			//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(gci);										//±£´æ¶ÔÏó
+		else if(tablename.equals("GoodsClassInfo")){			//ï¿½ï¿½Îªï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ê±
+			GoodsClassInfo gci = (GoodsClassInfo)obj;			//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(gci);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("ConsumerInfo")){				//µ±Îª¿Í»§Ê±
-			ConsumerInfo ci = (ConsumerInfo)obj;				//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(ci);										//±£´æ¶ÔÏó
+		else if(tablename.equals("ConsumerInfo")){				//ï¿½ï¿½Îªï¿½Í»ï¿½Ê±
+			ConsumerInfo ci = (ConsumerInfo)obj;				//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(ci);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("ProviderInfo")){				//µ±Îª¹©Ó¦ÉÌÊ±
-			ProviderInfo pi = (ProviderInfo)obj;				//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(pi);										//±£´æ¶ÔÏó
+		else if(tablename.equals("ProviderInfo")){				//ï¿½ï¿½Îªï¿½ï¿½Ó¦ï¿½ï¿½Ê±
+			ProviderInfo pi = (ProviderInfo)obj;				//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(pi);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("StockInfo")){					//µ±±£´æ²É¹º¶ÔÏóÊ±
-			StockInfo si = (StockInfo)obj;						//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(si);										//±£´æ¶ÔÏó
+		else if(tablename.equals("StockInfo")){					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
+			StockInfo si = (StockInfo)obj;						//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(si);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("StockDetail")){				//µ±±£´æ¶ÔÏóÎª²É¹ºÃ÷Ï¸Ê±
-			StockDetail sd = (StockDetail)obj;					//Ç¿ÖÆÀàÐÍ×ª»»
+		else if(tablename.equals("StockDetail")){				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½É¹ï¿½ï¿½ï¿½Ï¸Ê±
+			StockDetail sd = (StockDetail)obj;					//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 			String hql = "from StockDetail as sd where sd.gid='"
 						+sd.getGid()+"' and sd.sid='"+sd.getSid()+"'";
 			List<StockDetail> list = (List<StockDetail>)db.getInfo(hql);
 			GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());
-			gi.setGamount(gi.getGamount()+sd.getSdamount());	//ÉèÖÃÉÌÆ·ÊýÁ¿
-			sess.save(gi);										//±£´æÉÌÆ·¶ÔÏó
+			gi.setGamount(gi.getGamount()+sd.getSdamount());	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+			sess.save(gi);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 			if(!list.isEmpty()){
 				StockDetail sdtemp = (StockDetail)sess.get(StockDetail.class,list.get(0).getSdid());
 				sdtemp.setSdamount(sdtemp.getSdamount()+sd.getSdamount());
@@ -72,23 +72,23 @@ public class DBinsert{
 				sess.save(sdtemp);
 			}
 			else{
-				sess.save(sd);										//É¾³ýÃ÷Ï¸¶ÔÏó				
+				sess.save(sd);										//É¾ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½				
 			}
 			t.commit();
 			db.updateTotalprice("StockInfo",sd.getSid());
 			t = sess.beginTransaction();			
 		}
-		else if(tablename.equals("SellInfo")){					//µ±±£´æÏúÊÛ¶ÔÏóÊ±
-			SellInfo ei = (SellInfo)obj;						//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(ei);										//±£´æ¶ÔÏó
+		else if(tablename.equals("SellInfo")){					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¶ï¿½ï¿½ï¿½Ê±
+			SellInfo ei = (SellInfo)obj;						//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(ei);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("SellDetail")){				//µ±±£´æÏúÊÛÃ÷Ï¸Ê±
-			SellDetail ed = (SellDetail)obj;					//Ç¿ÖÆÀàÐÍ×ª»»
+		else if(tablename.equals("SellDetail")){				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸Ê±
+			SellDetail ed = (SellDetail)obj;					//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 			String hql = "from SellDetail as sd where sd.gid='"
 					+ed.getGid()+"' and sd.eid='"+ed.getEid()+"'";
 			List<SellDetail> list = (List<SellDetail>)db.getInfo(hql);
 			GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());
-			gi.setGamount(gi.getGamount()-ed.getEdamount());	//ÉèÖÃÊýÁ¿
+			gi.setGamount(gi.getGamount()-ed.getEdamount());	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			sess.save(gi);	
 			if(!list.isEmpty()){				
 				SellDetail sdtemp = (SellDetail)sess.get(SellDetail.class,list.get(0).getEdid());
@@ -97,23 +97,23 @@ public class DBinsert{
 				sess.save(sdtemp);
 			}
 			else{
-				sess.save(ed);										//±£´æ¶ÔÏó
+				sess.save(ed);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			t.commit();
 			db.updateTotalprice("SellInfo",ed.getEid());
 			t = sess.beginTransaction();
 		}
-		else if(tablename.equals("AdminInfo")){					//Ìí¼Ó¹ÜÀíÔ±¶ÔÏóÊ±
-			AdminInfo ai = (AdminInfo)obj;						//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(ai);										//±£´æ¶ÔÏó
+		else if(tablename.equals("AdminInfo")){					//ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ê±
+			AdminInfo ai = (AdminInfo)obj;						//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(ai);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("ConsumerBack")){				//Ìí¼Ó¿Í»§ÍË»õ
-			ConsumerBack cb = (ConsumerBack)obj;				//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(cb);										//±£´æ¶ÔÏó
+		else if(tablename.equals("ConsumerBack")){				//ï¿½ï¿½Ó¿Í»ï¿½ï¿½Ë»ï¿½
+			ConsumerBack cb = (ConsumerBack)obj;				//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(cb);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-		else if(tablename.equals("ProviderBack")){				//Ìí¼Ó²É¹ºÍË»õ
-			ProviderBack pb = (ProviderBack)obj;				//Ç¿ÖÆÀàÐÍ×ª»»
-			sess.save(pb);										//±£´æ¶ÔÏó
+		else if(tablename.equals("ProviderBack")){				//ï¿½ï¿½Ó²É¹ï¿½ï¿½Ë»ï¿½
+			ProviderBack pb = (ProviderBack)obj;				//Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+			sess.save(pb);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		else if(tablename.equals("ConsumerBackDetail")){
 			ConsumerBackDetail cbd = (ConsumerBackDetail)obj;			
@@ -175,7 +175,7 @@ public class DBinsert{
 				sess.save(pbd);
 			}
 		}
-		t.commit();												//Ìá½»ÊÂÎñ
-		sess.close();											//¹Ø±Õ»á»°
+		t.commit();												//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
+		sess.close();											//ï¿½Ø±Õ»á»°
 	}
 }

@@ -93,9 +93,7 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!-- 
-	   <td><%= new String((gci.getGcname()).getBytes("ISO-8859-1"),"gbk") %></td>
-	    -->
+	  
 	     <td><%= gci.getGcname() %></td>
 	   	 <td width="33%"><a href="ManageServlet?action=lookGoodsClass&gcid=<%= gci.getGcid() %>"><img border="0" src="img/mod.gif" height="16" width="16"/>查看/修改</a></td>
 	   	 <td width="33%"><a href="JavaScript:delete_sure('ManageServlet?action=deleteGoodsClass&gcid=<%= gci.getGcid() %>')"><img border="0" src="img/del.gif"/>删除</a></td>

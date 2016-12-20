@@ -115,17 +115,12 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	 %>
-	 <!--
-	 <td><%= new String(gname.getBytes("ISO-8859-1"),"gbk") %></td>
-	 <td><%= new String((gci.getGcname()).getBytes("ISO-8859-1"),"gbk") %></td> 
-	 -->
+	
 	    <td><%= gname %></td>
 	    <td><%= gci.getGcname() %></td>
 	    <td>￥<%= gpin %></td>
 	    <td>￥<%= gpout %></td>
-	    <!--
-	    <td><%= new String(gunit.getBytes("ISO-8859-1"),"gbk") %></td>
-	    -->
+	  
 	    <td><%= gunit %></td>
 	    <td><%= gamount %></td>
 	  </tr>

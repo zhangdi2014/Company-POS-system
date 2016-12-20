@@ -45,7 +45,6 @@
 		String hql = "select ei.eid from SellInfo as ei";
 		List<String> eid = (List<String>)db.getInfo(hql);
 		for(String name:eid){
-			//name = new String(name.getBytes("ISO-8859-1"),"gbk");
   	    %>
   	    	<option value="<%= name %>"><%= name %></option>
   	    <% 

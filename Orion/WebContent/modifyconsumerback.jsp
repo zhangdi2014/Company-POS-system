@@ -52,9 +52,7 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= cb.getCbid() %></td>
-	     <!--
-	     <td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
+	 
 	     <td><%= ci.getCname() %></td>
 	     <td><%= cb.getEid() %></td>
 	     <td><%= (cb.getCbdate().getYear()+1900)+"-"+
@@ -91,9 +89,7 @@
 	   	<form id="mfd<%= i %>" method="post" action="ManageServlet">
 	   	<input type="hidden" name="action" value="modifyConsumerBackDetail"/>
 	   	<input type="hidden" name="cbdid" value="<%= cbd.getCbdid() %>"/>
-	   	<!--
-	   	<td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   	-->
+	
 	  	<td><%= gi.getGname() %></td>
 	  	<td><input name="cbdamount" id="amount<%= i %>" value="<%= cbd.getCbdamount() %>"/></td>
 	  	<td><%= cbd.getCbdprice() %></td>

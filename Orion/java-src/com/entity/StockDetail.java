@@ -25,7 +25,6 @@ public class StockDetail {
 		this.sdtotalprice = sdtotalprice;
 	}
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sdid") 
 	public String getSdid() {
 		return sdid;

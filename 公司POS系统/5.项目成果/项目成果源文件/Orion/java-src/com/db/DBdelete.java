@@ -35,169 +35,169 @@ public class DBdelete{
 		this.db = db;
 	}
 	public void deleteTable(String tablename,String id){
-		Session sess = sf.openSession();							//´´½¨»á»°
-		Transaction t = sess.beginTransaction();					//¿ªÊ¼Ò»¸öÊÂÎñ
-		if(tablename.equals("GoodsInfo")){							//µ±±íÃûÎªGoodsInfoÊ±
-			GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,id);	//µÃµ½¶ÔÏó
+		Session sess = sf.openSession();							//ï¿½ï¿½ï¿½ï¿½ï¿½á»°
+		Transaction t = sess.beginTransaction();					//ï¿½ï¿½Ê¼Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(tablename.equals("GoodsInfo")){							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªGoodsInfoÊ±
+			GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,id);	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
 			if(gi!=null){
-				sess.delete(gi);									//½«¸Ã¶ÔÏóÉ¾³ý
+				sess.delete(gi);									//ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 			}
 		}
-		else if(tablename.equals("GoodsClassInfo")){				//É¾³ýÀà±ð¶ÔÏóÊ±
+		else if(tablename.equals("GoodsClassInfo")){				//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
 			GoodsClassInfo gci = (GoodsClassInfo)sess.get(GoodsClassInfo.class,id);
 			if(gci!=null){
-				sess.delete(gci);									//É¾³ý
+				sess.delete(gci);									//É¾ï¿½ï¿½
 			}
 		}
-		else if(tablename.equals("ConsumerInfo")){					//É¾³ý¿Í»§¶ÔÏóÊ±
+		else if(tablename.equals("ConsumerInfo")){					//É¾ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
 			ConsumerInfo ci = (ConsumerInfo)sess.get(ConsumerInfo.class,id);
 			if(ci!=null){
-				sess.delete(ci);									//É¾³ý¶ÔÏó
+				sess.delete(ci);									//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
-		else if(tablename.equals("ProviderInfo")){					//É¾³ý¹©Ó¦ÉÌ¶ÔÏóÊ±
+		else if(tablename.equals("ProviderInfo")){					//É¾ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ì¶ï¿½ï¿½ï¿½Ê±
 			ProviderInfo pi = (ProviderInfo)sess.get(ProviderInfo.class,id);
-			if(pi!=null){											//µ±¶ÔÏó²»Îª¿Õ
-				sess.delete(pi);									//É¾³ý¶ÔÏó
+			if(pi!=null){											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+				sess.delete(pi);									//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 		else if(tablename.equals("StockDetail")){
-			StockDetail sd = (StockDetail)sess.get(StockDetail.class,id);		//µÃµ½StockDetail¶ÔÏó
+			StockDetail sd = (StockDetail)sess.get(StockDetail.class,id);		//ï¿½Ãµï¿½StockDetailï¿½ï¿½ï¿½ï¿½
 			if(sd!=null){
-				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());//µÃµ½GoodsInfo¶ÔÏó
-				gi.setGamount(gi.getGamount()-sd.getSdamount());	//ºÎ¸ÄÊýÁ¿	
-				sess.save(gi);										//±£´æ¶ÔÏó		
-				sess.delete(sd);									//É¾³ý¶ÔÏó		
+				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());//ï¿½Ãµï¿½GoodsInfoï¿½ï¿½ï¿½ï¿½
+				gi.setGamount(gi.getGamount()-sd.getSdamount());	//ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½	
+				sess.save(gi);										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		
+				sess.delete(sd);									//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		
 				t.commit();
-				db.updateTotalprice("StockInfo",sd.getSid());			//¸üÐÂ¸¸±í×Ü¼Û
+				db.updateTotalprice("StockInfo",sd.getSid());			//ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½
 				t = sess.beginTransaction();
 			}
 		}
-		else if(tablename.equals("StockInfo")){						//µ±É¾³ý¶ÔÏóÎªstockinfoÊ±
-			StockInfo si = (StockInfo)sess.get(StockInfo.class,id);	//µÃµ½¶ÔÏó
-			if(si!=null){											//µ±¶ÔÏó²»Îª¿ÕÊ±
-				String hql = "from StockDetail as sd where sd.sid='"+id+"'";		//µÃµ½Ã÷Ï¸ÁÐ±íµÄhql
-				List<StockDetail> list = (List<StockDetail>)db.getInfo(hql);			//µÃµ½ÁÐ±í
-				for(StockDetail sd:list){											//Ñ­»·
-					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());//µÃµ½GoodsInfo¶ÔÏó
-					gi.setGamount(gi.getGamount()-sd.getSdamount());				//ºÎ¸ÄÊýÁ¿	
-					sess.save(gi);													//±£´æ¶ÔÏó
+		else if(tablename.equals("StockInfo")){						//ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªstockinfoÊ±
+			StockInfo si = (StockInfo)sess.get(StockInfo.class,id);	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			if(si!=null){											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±
+				String hql = "from StockDetail as sd where sd.sid='"+id+"'";		//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½Ð±ï¿½ï¿½hql
+				List<StockDetail> list = (List<StockDetail>)db.getInfo(hql);			//ï¿½Ãµï¿½ï¿½Ð±ï¿½
+				for(StockDetail sd:list){											//Ñ­ï¿½ï¿½
+					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,sd.getGid());//ï¿½Ãµï¿½GoodsInfoï¿½ï¿½ï¿½ï¿½
+					gi.setGamount(gi.getGamount()-sd.getSdamount());				//ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½	
+					sess.save(gi);													//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				}				
-				sess.delete(si);													//É¾³ý¶ÔÏó
+				sess.delete(si);													//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
-		else if(tablename.equals("SellDetail")){									//µ±É¾³ýÏúÊÛÃ÷Ï¸¶ÔÏóÊ±
-			SellDetail ed = (SellDetail)sess.get(SellDetail.class,id);				//µÃµ½Ã÷Ï¸¶ÔÏó
-			if(ed!=null){															//µ±¶ÔÏó²»Îª¿ÕÊ±
-				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());	//µÃµ½ÉÌÆ·¶ÔÏó
-				gi.setGamount(gi.getGamount()+ed.getEdamount());					//ÐÞ¸ÄÉÌÆ·ÊýÁ¿
-				sess.save(gi);														//±£´æÉÌÆ·¶ÔÏó
-				sess.delete(ed);													//É¾³ýÃ÷Ï¸
+		else if(tablename.equals("SellDetail")){									//ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½Ê±
+			SellDetail ed = (SellDetail)sess.get(SellDetail.class,id);				//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+			if(ed!=null){															//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±
+				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());	//ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				gi.setGamount(gi.getGamount()+ed.getEdamount());					//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.save(gi);														//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.delete(ed);													//É¾ï¿½ï¿½ï¿½ï¿½Ï¸
 				t.commit();
-				db.updateTotalprice("SellInfo",ed.getEid());							//¸üÐÂ¸¸±í×Ü¼Û
+				db.updateTotalprice("SellInfo",ed.getEid());							//ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½
 				t = sess.beginTransaction();
 			}
 		}
 		else if(tablename.equals("SellInfo")){
-			SellInfo ei = (SellInfo)sess.get(SellInfo.class,id);					//µÃµ½ÒªÉ¾³ýµÄ¶ÔÏó
-			if(ei!=null){															//µ±¶ÔÏó´æÔÚ
-				String hql = "from SellDetail as ed where ed.eid='"+id+"'";			//ËÑË÷¶ÔÓ¦µÄÃ÷Ï¸
-				List<SellDetail> list = (List<SellDetail>)db.getInfo(hql);				//µÃµ½Ã÷Ï¸¶ÔÏó
+			SellInfo ei = (SellInfo)sess.get(SellInfo.class,id);					//ï¿½Ãµï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
+			if(ei!=null){															//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				String hql = "from SellDetail as ed where ed.eid='"+id+"'";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ï¸
+				List<SellDetail> list = (List<SellDetail>)db.getInfo(hql);				//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
 				for(SellDetail ed:list){
-					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());//µÃµ½GoodsInfo¶ÔÏó
-					gi.setGamount(gi.getGamount()+ed.getEdamount());				//ºÎ¸ÄÊýÁ¿	
-					sess.save(gi);													//±£´æ¶ÔÏó	
+					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,ed.getGid());//ï¿½Ãµï¿½GoodsInfoï¿½ï¿½ï¿½ï¿½
+					gi.setGamount(gi.getGamount()+ed.getEdamount());				//ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½	
+					sess.save(gi);													//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 				}
-				sess.delete(ei);													//É¾³ý¶ÔÏó
+				sess.delete(ei);													//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}			
 		}
-		else if(tablename.equals("AdminInfo")){										//É¾³ý¹ÜÀíÔ±Ê±
-			AdminInfo ai = (AdminInfo)sess.get(AdminInfo.class,id);					//µÃµ½¹ÜÀíÔ±¶ÔÏó
-			if(ai!=null){															//µ±¶ÔÏó²»Îª¿Õ
-				sess.delete(ai);													//É¾³ý¶ÔÏó
+		else if(tablename.equals("AdminInfo")){										//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Ê±
+			AdminInfo ai = (AdminInfo)sess.get(AdminInfo.class,id);					//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+			if(ai!=null){															//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+				sess.delete(ai);													//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
-		else if(tablename.equals("ConsumerBackDetail")){										//É¾³ý¿Í»§ÍË»õÃ÷Ï¸
-			ConsumerBackDetail cbd = (ConsumerBackDetail)sess.get(ConsumerBackDetail.class,id);	//µÃµ½¶ÔÏó
-			if(cbd!=null){																		//µ±¶ÔÏó²»Îª¿Õ
-				ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,cbd.getCbid());		//µÃµ½¿Í»§¶ÔÏó
+		else if(tablename.equals("ConsumerBackDetail")){										//É¾ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë»ï¿½ï¿½ï¿½Ï¸
+			ConsumerBackDetail cbd = (ConsumerBackDetail)sess.get(ConsumerBackDetail.class,id);	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			if(cbd!=null){																		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+				ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,cbd.getCbid());		//ï¿½Ãµï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 				String hql = "from SellDetail as ed where ed.eid='"
 							+cb.getEid()+"' and ed.gid='"+cbd.getGid()+"'";
-				SellDetail temp = ((List<SellDetail>)db.getInfo(hql)).get(0);						//µÃµ½¶ÔÓ¦µÄÏúÊÛÃ÷Ï¸¶ÔÏó
-				SellDetail sd = (SellDetail)sess.get(SellDetail.class,temp.getEdid());			//µÃµ½Ã÷Ï¸¶ÔÏó
-				sd.setEdamount(sd.getEdamount()+cbd.getCbdamount());							//ÐÞ¸ÄÏúÊÛÊýÁ¿
-				sd.setEdtotalprice(sd.getEdamount()*sd.getEdprice());							//ÐÞ¸ÄÏúÊÛ×Ü¼Û¸ñ
-				sess.save(sd);																	//±£´æ¶ÔÏó
-				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,cbd.getGid());				//µÃµ½ÉÌÆ·¶ÔÏó
-				gi.setGamount(gi.getGamount()-cbd.getCbdamount());								//ÐÞ¸ÄÉÌÆ·ÊýÁ¿
-				sess.save(gi);																	//±£´æÉÌÆ·¶ÔÏó
-				sess.delete(cbd);																//É¾³ýÃ÷Ï¸¶ÔÏó
+				SellDetail temp = ((List<SellDetail>)db.getInfo(hql)).get(0);						//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+				SellDetail sd = (SellDetail)sess.get(SellDetail.class,temp.getEdid());			//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+				sd.setEdamount(sd.getEdamount()+cbd.getCbdamount());							//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				sd.setEdtotalprice(sd.getEdamount()*sd.getEdprice());							//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼Û¸ï¿½
+				sess.save(sd);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,cbd.getGid());				//ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				gi.setGamount(gi.getGamount()-cbd.getCbdamount());								//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.save(gi);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.delete(cbd);																//É¾ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
 				t.commit();
-				db.updateTotalprice("SellInfo",sd.getEid());										//¸üÐÂ¸¸±í×Ü¼Û¸ñ
+				db.updateTotalprice("SellInfo",sd.getEid());										//ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½ï¿½Ü¼Û¸ï¿½
 				t = sess.beginTransaction();
 			}			
 		}
 		else if(tablename.equals("ProviderBackDetail")){
-			ProviderBackDetail pbd = (ProviderBackDetail)sess.get(ProviderBackDetail.class,id);	//µÃµ½¶ÔÏó
-			if(pbd!=null){																		//µ±¶ÔÏó²»Îª¿Õ
-				ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,pbd.getPbid());		//µÃµ½¹©Ó¦ÉÌ¶ÔÏó
+			ProviderBackDetail pbd = (ProviderBackDetail)sess.get(ProviderBackDetail.class,id);	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			if(pbd!=null){																		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+				ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,pbd.getPbid());		//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ì¶ï¿½ï¿½ï¿½
 				String hql = "from StockDetail as sd where sd.sid='"
 							+pb.getSid()+"' and sd.gid='"+pbd.getGid()+"'";
-				StockDetail temp = ((List<StockDetail>)db.getInfo(hql)).get(0);					//µÃµ½¶ÔÓ¦µÄ²É¹ºÃ÷Ï¸¶ÔÏó
-				StockDetail sd = (StockDetail)sess.get(StockDetail.class,temp.getSdid());		//µÃµ½Ã÷Ï¸¶ÔÏó
-				sd.setSdamount(sd.getSdamount()+pbd.getPbdamount());							//ÐÞ¸Ä²É¹ºÊýÁ¿
-				sd.setSdtotalprice(sd.getSdamount()*sd.getSdprice());							//ÐÞ¸Ä²É¹º×Ü¼Û¸ñ
-				sess.save(sd);																	//±£´æ¶ÔÏó
-				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,pbd.getGid());				//µÃµ½ÉÌÆ·¶ÔÏó
-				gi.setGamount(gi.getGamount()+pbd.getPbdamount());								//ÐÞ¸ÄÉÌÆ·ÊýÁ¿
-				sess.save(gi);																	//±£´æÉÌÆ·¶ÔÏó
-				sess.delete(pbd);																//É¾³ýÃ÷Ï¸¶ÔÏó
+				StockDetail temp = ((List<StockDetail>)db.getInfo(hql)).get(0);					//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ä²É¹ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+				StockDetail sd = (StockDetail)sess.get(StockDetail.class,temp.getSdid());		//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+				sd.setSdamount(sd.getSdamount()+pbd.getPbdamount());							//ï¿½Þ¸Ä²É¹ï¿½ï¿½ï¿½ï¿½ï¿½
+				sd.setSdtotalprice(sd.getSdamount()*sd.getSdprice());							//ï¿½Þ¸Ä²É¹ï¿½ï¿½Ü¼Û¸ï¿½
+				sess.save(sd);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,pbd.getGid());				//ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				gi.setGamount(gi.getGamount()+pbd.getPbdamount());								//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.save(gi);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+				sess.delete(pbd);																//É¾ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
 				t.commit();
-				db.updateTotalprice("StockInfo",sd.getSid());										//¸üÐÂ¸¸±í×Ü¼Û¸ñ
+				db.updateTotalprice("StockInfo",sd.getSid());										//ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½ï¿½Ü¼Û¸ï¿½
 				t = sess.beginTransaction();
 			}
 		}
 		else if(tablename.equals("ProviderBack")){
-			ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,id);					//µÃµ½ÒªÉ¾³ýµÄ¶ÔÏó
+			ProviderBack pb = (ProviderBack)sess.get(ProviderBack.class,id);					//ï¿½Ãµï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 			if(pb!=null){
 				String pbdtemp = "from ProviderBackDetail as pbd where pbd.pbid='"+pb.getPbid()+"'";
 				List<ProviderBackDetail> list = (List<ProviderBackDetail>)db.getInfo(pbdtemp);
 				for(ProviderBackDetail pbd:list){
 					String hql = "from StockDetail as sd where sd.sid='"
 								+pb.getSid()+"' and sd.gid='"+pbd.getGid()+"'";
-					StockDetail temp = ((List<StockDetail>)db.getInfo(hql)).get(0);					//µÃµ½¶ÔÓ¦µÄ²É¹ºÃ÷Ï¸¶ÔÏó
-					StockDetail sd = (StockDetail)sess.get(StockDetail.class,temp.getSdid());		//µÃµ½Ã÷Ï¸¶ÔÏó
-					sd.setSdamount(sd.getSdamount()+pbd.getPbdamount());							//ÐÞ¸Ä²É¹ºÊýÁ¿
-					sd.setSdtotalprice(sd.getSdamount()*sd.getSdprice());							//ÐÞ¸Ä²É¹º×Ü¼Û¸ñ
-					sess.save(sd);																	//±£´æ¶ÔÏó
-					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,pbd.getGid());				//µÃµ½ÉÌÆ·¶ÔÏó
-					gi.setGamount(gi.getGamount()+pbd.getPbdamount());								//ÐÞ¸ÄÉÌÆ·ÊýÁ¿
-					sess.save(gi);																	//±£´æÉÌÆ·¶ÔÏó
-					sess.delete(pbd);																//É¾³ýÃ÷Ï¸¶ÔÏó
+					StockDetail temp = ((List<StockDetail>)db.getInfo(hql)).get(0);					//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ä²É¹ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+					StockDetail sd = (StockDetail)sess.get(StockDetail.class,temp.getSdid());		//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+					sd.setSdamount(sd.getSdamount()+pbd.getPbdamount());							//ï¿½Þ¸Ä²É¹ï¿½ï¿½ï¿½ï¿½ï¿½
+					sd.setSdtotalprice(sd.getSdamount()*sd.getSdprice());							//ï¿½Þ¸Ä²É¹ï¿½ï¿½Ü¼Û¸ï¿½
+					sess.save(sd);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,pbd.getGid());				//ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					gi.setGamount(gi.getGamount()+pbd.getPbdamount());								//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					sess.save(gi);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					sess.delete(pbd);																//É¾ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
 					t.commit();
-					db.updateTotalprice("StockInfo",sd.getSid());										//¸üÐÂ¸¸±í×Ü¼Û¸ñ
+					db.updateTotalprice("StockInfo",sd.getSid());										//ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½ï¿½Ü¼Û¸ï¿½
 					t = sess.beginTransaction();
 				}
 				sess.delete(pb);
 			}
 		}
 		else if(tablename.equals("ConsumerBack")){
-			ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,id);					//µÃµ½ÒªÉ¾³ýµÄ¶ÔÏó	
+			ConsumerBack cb = (ConsumerBack)sess.get(ConsumerBack.class,id);					//ï¿½Ãµï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½	
 			if(cb!=null){
 				String cbdtemp = "from ConsumerBackDetail as cbd where cbd.cbid='"+cb.getCbid()+"'";
 				List<ConsumerBackDetail> list = (List<ConsumerBackDetail>)db.getInfo(cbdtemp);
 				for(ConsumerBackDetail cbd:list){					
 					String hql = "from SellDetail as ed where ed.eid='"
 								+cb.getEid()+"' and ed.gid='"+cbd.getGid()+"'";
-					SellDetail temp = ((List<SellDetail>)db.getInfo(hql)).get(0);						//µÃµ½¶ÔÓ¦µÄÏúÊÛÃ÷Ï¸¶ÔÏó
-					SellDetail sd = (SellDetail)sess.get(SellDetail.class,temp.getEdid());			//µÃµ½Ã÷Ï¸¶ÔÏó
-					sd.setEdamount(sd.getEdamount()+cbd.getCbdamount());							//ÐÞ¸ÄÏúÊÛÊýÁ¿
-					sd.setEdtotalprice(sd.getEdamount()*sd.getEdprice());							//ÐÞ¸ÄÏúÊÛ×Ü¼Û¸ñ
-					sess.save(sd);																	//±£´æ¶ÔÏó
-					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,cbd.getGid());				//µÃµ½ÉÌÆ·¶ÔÏó
-					gi.setGamount(gi.getGamount()-cbd.getCbdamount());								//ÐÞ¸ÄÉÌÆ·ÊýÁ¿
-					sess.save(gi);																	//±£´æÉÌÆ·¶ÔÏó
-					sess.delete(cbd);																//É¾³ýÃ÷Ï¸¶ÔÏó
+					SellDetail temp = ((List<SellDetail>)db.getInfo(hql)).get(0);						//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+					SellDetail sd = (SellDetail)sess.get(SellDetail.class,temp.getEdid());			//ï¿½Ãµï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+					sd.setEdamount(sd.getEdamount()+cbd.getCbdamount());							//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					sd.setEdtotalprice(sd.getEdamount()*sd.getEdprice());							//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼Û¸ï¿½
+					sess.save(sd);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					GoodsInfo gi = (GoodsInfo)sess.get(GoodsInfo.class,cbd.getGid());				//ï¿½Ãµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					gi.setGamount(gi.getGamount()-cbd.getCbdamount());								//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					sess.save(gi);																	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+					sess.delete(cbd);																//É¾ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
 					t.commit();
 					db.updateTotalprice("SellInfo",sd.getEid());
 					t = sess.beginTransaction();
@@ -205,7 +205,7 @@ public class DBdelete{
 				sess.delete(cb);
 			}		
 		}
-		t.commit();										//Ìá½»ÊÂÎñ
-		sess.close();									//¹Ø±Õ»á»°
+		t.commit();										//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
+		sess.close();									//ï¿½Ø±Õ»á»°
 	}
 }

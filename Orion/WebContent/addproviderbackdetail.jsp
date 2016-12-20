@@ -55,9 +55,6 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= pb.getPbid() %></td>
-	     <!--
-	       <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pb.getSid() %></td>
 	     <td><%= (pb.getPbdate().getYear()+1900)+"-"+
@@ -87,9 +84,6 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= pbd.getPbdamount() %></td>
 	  	<td>--</td>
@@ -106,7 +100,6 @@
       	  			"as sd where sd.sid='"+pb.getSid()+"')";
 			List<String> gname = (List<String>)db.getInfo(hql);
 			for(String name:gname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 

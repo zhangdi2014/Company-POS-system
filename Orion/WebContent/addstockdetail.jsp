@@ -99,7 +99,6 @@
       	  <% 
 			List<String> gname = db.getGoods();
 			for(String name:gname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 

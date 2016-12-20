@@ -75,7 +75,7 @@
       	  <% 
 			List<String> pname = db.getProvider();
 			for(String name:pname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
+
   	   			String flag = "";
   	   			if(name.equals(pi.getPname())){
   	   				flag = "selected";
