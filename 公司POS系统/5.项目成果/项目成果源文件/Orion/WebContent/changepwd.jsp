@@ -51,18 +51,8 @@
 	      </tr>
 		  <tr>
 		    <td colspan="2" align="center">
-		    <img border="0" src="img/sm.gif" id="xg" onclick="JavaScript:check()"
-	          	  style="cursor:hand"
-	          	  onmouseover="document.all.xg.src='img/sma.gif'"
-	          	  onmouseout="document.all.xg.src='img/sm.gif'"
-	          	  onmouseup="document.all.xg.src='img/sma.gif'"        	
-	          	  onmousedown="document.all.xg.src='img/smb.gif'"/>
-		    <img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"
-	          	  style="cursor:hand"
-	          	  onmouseover="document.all.cz.src='img/cza.gif'"
-	          	  onmouseout="document.all.cz.src='img/cz.gif'"
-	          	  onmouseup="document.all.cz.src='img/cza.gif'"        	
-	          	  onmousedown="document.all.cz.src='img/czb.gif'"/></td>
+		    <img border="0" src="img/sm.gif" id="xg" onclick="JavaScript:check()"style="cursor:hand"/>
+		    <img border="0" src="img/cz.gif" id="cz" onclick="JavaScript:document.all.mf.reset()"style="cursor:hand"/></td>
 		  </tr>
 	    </table>
 	    <input type="hidden" name="action" value="changepwd"/>

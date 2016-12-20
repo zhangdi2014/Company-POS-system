@@ -31,7 +31,7 @@
       }
     </script>
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -56,16 +56,11 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 		<td><%= ei.getEid() %></td>
-		<!--
-		<td><%= new String(ci.getCname().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
 		<td><%= ci.getCname() %></td>
 	     <td><%= (ei.getEdate().getYear()+1900)+"-"+
 	     		(ei.getEdate().getMonth()+1)+"-"+(ei.getEdate().getDate()) %></td>
 		<td><%= ei.getEtotalprice() %></td>
-		<!--
-		<td><%= new String(ei.getEseller().getBytes("ISO-8859-1"),"gbk") %></td>
-		-->
+	
 		<td><%= ei.getEseller() %></td>
 	  </tr>
 	</table>
@@ -92,9 +87,7 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   <td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+	
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= sd.getEdamount() %></td>
 	  	<td>--</td>
@@ -108,7 +101,6 @@
       	  <% 
 			List<String> gname = db.getGoods();
 			for(String name:gname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
       	    %>
       	    	<option value="<%= name %>"><%= name %></option>
       	    <% 

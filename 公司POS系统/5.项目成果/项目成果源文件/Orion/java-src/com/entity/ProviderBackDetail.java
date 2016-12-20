@@ -25,7 +25,6 @@ public class ProviderBackDetail {
 		this.pbdtotalprice = pbdtotalprice;
 	}
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pbdid") 
 	public String getPbdid() {
 		return pbdid;

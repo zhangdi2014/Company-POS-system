@@ -16,7 +16,7 @@
        }
      </script>
    </head>
-   <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+   <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -37,10 +37,7 @@
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
 	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">类别名称:</td>
-	    <!-- 
-	    <td><input size="20" name="gcname" id="gcname" 
-	    		value="<%= new String(gci.getGcname().getBytes("ISO-8859-1"),"gbk") %>"/></td>
-	     -->
+	   
 	    <td><input size="20" style="height:30px;font-size:16px" name="gcname" id="gcname" value="<%= gci.getGcname() %>"/></td>
 	  </tr>	
 	</table>

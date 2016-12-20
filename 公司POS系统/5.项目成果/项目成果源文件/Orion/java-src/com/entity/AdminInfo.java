@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
 public class AdminInfo {
 	private String aid;
@@ -22,11 +20,8 @@ public class AdminInfo {
 		this.apwd = apwd;
 		this.alevel = alevel;
 	}
-	@Id              // 琛ㄧず涓婚敭
-
-   // @GenericGenerator(name = "generator", strategy = "increment")   @GeneratedValue(generator = "generator")   // 鑷闀�
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "aid")                                 // 绫诲睘鎬у搴旂潃琛ㄥ瓧娈�
+	@Id              
+    @Column(name = "aid")                                 
 	public String getAid() {
 		return aid;
 	}

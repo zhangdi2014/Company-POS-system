@@ -16,7 +16,7 @@
   <head>
     <title>明细查看</title>   
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -40,9 +40,7 @@
 	  </tr>
 	  <tr bgcolor="white" align="center" height="40px">
 	     <td><%= pb.getPbid() %></td>
-	     <!--
-	     <td><%= new String(pi.getPname().getBytes("ISO-8859-1"),"gbk") %></td>
-	     -->
+	
 	     <td><%= pi.getPname() %></td>
 	     <td><%= pb.getSid() %></td>
 	     <td><%= (pb.getPbdate().getYear()+1900)+"-"+
@@ -74,9 +72,7 @@
 			out.println("<tr bgcolor='#EBF5FD' align='center' style='height:40px'>");
 		}
 	   %>
-	   <!--
-	   	<td><%= new String(gi.getGname().getBytes("ISO-8859-1"),"gbk") %></td>
-	   -->
+
 	  	<td><%= gi.getGname() %></td>
 	  	<td><%= pbd.getPbdamount() %></td>
 	  	<td><%= pbd.getPbdprice() %></td>

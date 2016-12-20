@@ -24,7 +24,6 @@ public class SellInfo {
 		this.eseller = eseller;
 	}
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "eid") 
 	public String getEid() {
 		return eid;

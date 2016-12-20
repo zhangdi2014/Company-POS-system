@@ -18,7 +18,7 @@
     </script>
   </head>
   <body>
-   <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+   <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -45,7 +45,6 @@
 		String hql = "select si.sid from StockInfo as si";
 		List<String> sid = (List<String>)db.getInfo(hql);
 		for(String name:sid){
-			//name = new String(name.getBytes("ISO-8859-1"),"gbk");
   	    %>
   	    	<option value="<%= name %>"><%= name %></option>
   	    <% 

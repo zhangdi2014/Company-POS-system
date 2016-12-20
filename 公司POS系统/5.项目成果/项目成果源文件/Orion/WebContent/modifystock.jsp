@@ -44,7 +44,7 @@
       }
     </script>
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -75,7 +75,7 @@
       	  <% 
 			List<String> pname = db.getProvider();
 			for(String name:pname){
-				//name = new String(name.getBytes("ISO-8859-1"),"gbk");
+
   	   			String flag = "";
   	   			if(name.equals(pi.getPname())){
   	   				flag = "selected";

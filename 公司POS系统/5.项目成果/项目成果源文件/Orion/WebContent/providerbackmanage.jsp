@@ -37,16 +37,14 @@
       }
     </script>    
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
   	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td><font color="#FFFFFF" size="5">采购退货管理</font></td></tr>
 	</table>
-	<table>
+	<hr size="1" width="100%" color="black"/>
 	<form action="ManageServlet" method="post" id="smf">
-	  <tr>	    
-		<td>
-		<table height="42" style="background:url(img/add_sear.jpg) no-repeat">
+		<table bgcolor="#206AB3" style="border-radius: 5px">
 		  <tr>
 		    <td>
 		      &nbsp;<img src="img/log.gif" border="0" style="cursor:hand" onclick="document.all.key.focus()"/>
@@ -65,14 +63,9 @@
 	    	<td align="center" width="90"><a href="addproviderback.jsp" target="mainFrame"><font color="white" size="2">添加退货</font></a></td>
 		  </tr>
 		</table>
-	    </td>
-	    <td>
 	      <input type="hidden" name="action" value="search" />
 	      <input type="hidden" name="type" value="providerback"/>
-	    </td>	   
-	  </tr>
 	</form>
-	</table>
 	<hr size="1" width="100%" color="black"/>  
 	<% 
 		if(list.isEmpty()){

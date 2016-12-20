@@ -21,8 +21,7 @@ public class ConsumerBack {
 		this.eid = eid;
 		this.cbdate = cbdate;
 	}
-	@Id              // 表示主键
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id             
 	@Column(name = "cbid")  
 	public String getCbid() {
 		return cbid;

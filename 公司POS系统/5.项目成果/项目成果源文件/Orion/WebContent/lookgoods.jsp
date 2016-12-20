@@ -9,7 +9,7 @@
     <title>查看商品</title>
      <script language="JavaScript" src="script/trim.js"></script>
   </head>
-  <body style="background: url(img/f4.jpg) no-repeat;background-size:100% 100%">
+  <body>
  	<jsp:useBean id="userBean" class="com.bean.UserBean" scope="session"/>
 	<table width="100%" height="44" bgcolor="#206AB3">
       <tr align="center"><td>
@@ -28,23 +28,23 @@
 	 %>
 	<form action="ManageServlet" method="post" id="mf">
 	<table width="80%" border="0" cellspacing="1" bgcolor="black" align="center">	
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	    <td align="center">商品名称:</td>
 	    <td><%= gi.getGname() %></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">计量单位:</td>
 	  	<td><%= gi.getGunit() %></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">进&nbsp;&nbsp;&nbsp;&nbsp;价:</td>
 	  	<td><%= gi.getGpin() %></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">售&nbsp;&nbsp;&nbsp;&nbsp;价:</td>
 	  	<td><%= gi.getGpout() %></td>
 	  </tr>
-	  <tr bgcolor="white">
+	  <tr bgcolor="#ebf5fd" height="40px">
 	  	<td align="center">商品数量:</td>
 	  	<td><%= gi.getGamount() %></td>
 	  </tr>	
